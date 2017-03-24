@@ -5,7 +5,7 @@ var https = require("https"); //https 请求
 
 function request(path,callback){
     var options = {
-        hostname: 'mainsite-restapi.ele.me',
+        hostname: 'm.juanpi.com',
         port: 443, //端口号 https默认端口 443， http默认的端口号是80
         path: path,
         method: 'GET'
