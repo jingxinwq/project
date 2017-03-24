@@ -3,6 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>webjuanpi</title>
+    <script>
+    	  var scale = 1/window.devicePixelRatio;
+        var mstr = 'initial-scale='+ scale +', maximum-scale='+ scale +', minimum-scale='+ scale +', user-scalable=no';
+
+        document.getElementById("vp").content = mstr;
+        
+        console.log(document.documentElement.clientWidth);
+        
+        document.getElementsByTagName("html")[0].style.fontSize = 100*document.documentElement.clientWidth/750 + "px";
+    	
+    </script>
   </head>
   <body>
     <div id="app"></div>
