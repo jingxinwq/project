@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="height=device-height,initial-scale=1,user-scalable=no" />
+    <!--<meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">-->
+    <title>饿了么网上订餐</title>
+    <script src="../javascripts/zepto.min.js"></script>
+    <script src="../javascripts/index.js"></script>
+    <link rel="stylesheet" style="text/css" href="../stylesheets/index.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="../stylesheets/swiper.min.css">
+    <!-- Swiper JS -->
+    <script src="../javascripts/swiper.min.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="information">
+            <div class="left l">
+                <i class="iconfont l">&#xe601;</i>
+            </div>
+            <div class="right r">
+                <div class="textbox l"></div>
+            </div>
+        </div>
+        <div class="search">
+            <input style="text" placeholder="搜索商家、商品">
+        </div>
+        <div class="hot"></div>
+    </div>
+    <div id="index_entry">
+        <div class="swiper-container" >
+            <!-- //swiper-wrapper 就包裹所有轮播的页面 -->
+            <div class="swiper-wrapper">
+                <div class="swiper-slide page1"></div>
+                <div class="swiper-slide page2"></div>
+            </div>
+        </div>
+        <!-- //加上下面这个div 就是加上分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <h3>推荐商家</h3>
+    <div id="main">
+        <!--<div class="restaurant">-->
+            <!--<div class="left l "></div>-->
+            <!--<div class="right l">-->
+                <!--<div class="title">-->
+                    <!--<div class="titleleft"></div>-->
+                    <!--<div class="titleright">-->
+                        <!--<div></div>-->
+                        <!--<div></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="sale">-->
+                    <!--<div class="rating"></div>-->
+                    <!--<div class="saleall"></div>-->
+                    <!--<div class="method">-->
+
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="transport">-->
+                    <!--<div class="price l"></div>-->
+                    <!--<div class="time r"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+
+    <script>
+        //Swiper 第一个参数 帮助找到唯一容器class
+        var swiper = new Swiper('.swiper-container',{
+            pagination: '.swiper-pagination',
+            paginationClickable: true, //分页器可以点击
+            speed:1000,
+            loop:true
+        });
+        //1. spaceBetween: 100, //间距
+        //2. loop: true //循环
+        //3. autoplay: 2000, 自动轮播属性 ，单位毫秒
+    </script>
+</body>
+</html>
