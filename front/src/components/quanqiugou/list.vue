@@ -7,6 +7,15 @@
 					</span>
 				</div>
 			</header>
+			<nav>
+    	<mt-swipe :auto="4000">
+		  <mt-swipe-item>
+		  	111
+		  </mt-swipe-item>
+ 
+		</mt-swipe>
+				
+			</nav>
   </div>
 </template>
 
@@ -16,8 +25,16 @@ export default {
   name: 'list',
   data () {
     return {
-			
+			swipe:[]
     }
+  },
+  mounted(){
+  	 	this.$http.jsonp('http://ad.juanpi.com/advert/ad?unique=module_ads%2Cbanner_ads&cid=310&zy_id=c3_l1_18_51_5&platform=m&_=1490405789194&callback=jsonp1').then(res=>{
+  		console.log(res.body.banner_ads)
+  		this.swipe=res.body.banner_ads
+  		},errro=>{
+  			
+  		})
   }
 }
 </script>
@@ -87,4 +104,5 @@ header .ha .ha2{
 	left: 85%;
 	top:20px;
 }
+
 </style>
