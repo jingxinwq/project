@@ -36,7 +36,7 @@ export default {
     *{
       margin:0px;
       padding:0px;
-      font-size:100px;
+
     }
 
     li{
@@ -44,7 +44,7 @@ export default {
     }
     html,body{
       height: 100%;
-      overflow: hidden;
+      overflow: auto;
     }
 
     .footer{
