@@ -12,7 +12,9 @@
 		  <mt-swipe-item>
 		  	111
 		  </mt-swipe-item>
- 
+ 		  <mt-swipe-item>
+		  	222
+		  </mt-swipe-item>
 		</mt-swipe>
 				
 			</nav>
@@ -104,5 +106,10 @@ header .ha .ha2{
 	left: 85%;
 	top:20px;
 }
+mt-swipe{
+		margin: 0 auto;
+    max-width: 16rem;
+    overflow: hidden;
 
+}
 </style>
