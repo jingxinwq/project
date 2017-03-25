@@ -36,6 +36,7 @@ export default {
     *{
       margin:0px;
       padding:0px;
+      font-size:100px;
     }
 
     li{
