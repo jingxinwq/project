@@ -5,14 +5,15 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import routes from './routerConfig'
 import './animate.css'
-
-
+import resource from "vue-resource";
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
 
 
 Vue.use(VueRouter)
 Vue.prototype.$http = axios
-
-
+Vue.use(resource) 
+Vue.use(MintUI);
 const router = new VueRouter({
 	mode: 'history',
 	routes
