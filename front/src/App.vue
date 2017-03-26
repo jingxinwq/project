@@ -72,6 +72,7 @@ export default {
     *{
       margin:0px;
       padding:0px;
+<<<<<<< HEAD
     }
     :root{
     	background: #f2f2f2;
@@ -85,6 +86,7 @@ export default {
       height: 100%;
       overflow: hidden;
       font-size: 100px;
+      overflow: auto;
     }
 
     .footer{

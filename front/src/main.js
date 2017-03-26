@@ -10,10 +10,11 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 
 
-Vue.use(VueRouter)
+
 Vue.prototype.$http = axios
 Vue.use(resource) 
 Vue.use(MintUI);
+Vue.use(VueRouter)
 const router = new VueRouter({
 	mode: 'history',
 	routes
