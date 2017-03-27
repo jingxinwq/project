@@ -112,6 +112,7 @@ export default {
       display: block;
       width: 0.43rem;
       height: 0.43rem;
+      background-size: 100% 100%;
       margin: 0.07rem auto;
     }
     .icon-zhifacang {
@@ -119,6 +120,7 @@ export default {
       display: block;
       width: 0.43rem;
       height: 0.43rem;
+      background-size: 100% 100%;
       margin: 0.07rem auto;
     }
      .icon-quanqiugou {
@@ -126,6 +128,7 @@ export default {
       display: block;
       width: 0.43rem;
       height: 0.43rem;
+      background-size: 100% 100%;
       margin: 0.07rem auto;
     }
     .icon-gouwuche {
@@ -133,6 +136,7 @@ export default {
       display: block;
       width: 0.43rem;
       height: 0.43rem;
+      background-size: 100% 100%;
       margin: 0.07rem auto;
     }
      .icon-myjuanpi {
@@ -140,6 +144,7 @@ export default {
       display: block;
       width: 0.43rem;
       height: 0.43rem;
+      background-size: 100% 100%;
       margin: 0.07rem auto;
     }
     .kerwinAcitive .icon-todayzk {
