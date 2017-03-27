@@ -38,8 +38,8 @@
   		</div>
   		<div id='main'>
   			<ul class="ee">
-  					<li class="e1" v-for='data in active'>
-  						<img :src='data.shop_cover' />
+  					<li class="e1" v-for='data in active'  >
+  						<img :src='data.shop_cover' @click="changepage(data.shop_id)"/>
   						<ul class="e11">
   							<li class="e111" v-for='data in data.shop_goods'>
   								<dl>
@@ -60,6 +60,7 @@
 
 <script>
 import router from "../../routerConfig";
+
 export default {
   name: 'list',
   data () {
@@ -73,6 +74,7 @@ export default {
 			
     }
   },
+  
   mounted(){
   	 	this.$http.jsonp('http://ad.juanpi.com/advert/ad?unique=module_ads%2Cbanner_ads&cid=310&zy_id=c3_l1_18_51_5&platform=m&_=1490405789194&callback=jsonp1').then(res=>{
 //		console.log(res.body.module_ads.multi_block[0].data[0].child[0].pic)
@@ -90,14 +92,20 @@ export default {
   			
   		})  		
   },
-  
+   methods:{
+  	changepage(id){
+  		console.log(id)
+  			router.push({ name: 'detail', params: { Id: id }})
+  	}
+
+
+  }
 }
 </script>
 
 <style scoped>
 	body,html{
 		height:100%;
-		font-size: 48.8125px;
     font-weight: 300px;
     width:100%;
     overflow: scroll;
@@ -123,11 +131,11 @@ header{
     overflow: inherit;
     position: relative;
     z-index: 199;
-    border-bottom: 1px solid #dedede;
-    height: 88px;
+    border-bottom: .01rem solid #dedede;
+    height: .88rem;
 }
 header .ha{
-	    height: 88px;
+	    height: .88rem;
 	    background: #fff;
 	    z-index: 999;
     position: absolute;
@@ -135,9 +143,9 @@ header .ha{
 
 } 
 header .ha .ha1{
-	height: 88px;
-	line-height:88px;
-	font-size: 36px;
+	height: .88rem;
+	line-height:.88rem;
+	font-size: .36rem;
 
 	text-align: center;
     cursor: default;
@@ -152,34 +160,42 @@ header .ha .ha1{
 }
 header .ha .ha2{
 	display: block;
-	width: 48px;
-	height: 48px;
+	width: 0.48rem;
+	height: 0.48rem;
 	vertical-align: top;
 	background: url(../../assets/btn-sign.png) no-repeat scroll 0 0;
 	position: absolute;
 	left: 90%;
-	top:20px;
+	top:.2rem;
 }
 nav{
 	    max-width: 16rem;
-	    height: 296px;
+	    height: 2.96rem;
 }
+.mint-swipe-items-wrap {
+		width: 100%;
+	  	height: 2.9rem;
+	  	color: #fff;
+	  	text-align: center;
+
+	}
+
+.mint-swipe-items-wrap img{
+			width: 100%;
+	  	height: 100%;
+	}
 nav .mint-swipe .mint-swipe-indicators{
 	width: 100%;
-	height: 56px;
+	height: .56rem;
 }
 nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
-	height: 12px!important;
-	width: 12px!important;
-	margin-top: 10px;
+	height: .12rem!important;
+	width: .12rem!important;
+	margin-top: .1rem;
 }
-.is-active{
-		height: 12px!important;
-	width: 12px!important;
-}
+
 #main1{
 	  width: 100%;
-
     height: 100%;
     overflow: auto;
 }
@@ -190,12 +206,18 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 #main1 .qq .q1{
 	flex: 1;
 }
+#main1 .qq .q1 .q11 img{
+	width: 100%;
+}
+#main1 .qq .q2 .q22 img{
+	width: 100%;
+}
 #main1 .qq .q1 .q11:nth-child(2){
-	border-bottom: 20px solid #eee;
+	border-bottom: .2rem solid #eee;
 }
 #main1 .qq .q1 .q11:nth-child(4) img,#main1 .qq .q1 .q11:nth-child(5) img{
-	width:230px;
-	height: 190px;
+	width:100%;
+	height: 1.9rem;
 	display: block;
 	margin: 0 auto;
 }
@@ -203,17 +225,17 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 	flex: 1;
 }
 #main1 .qq .q2 .q22:nth-child(2){
-		border-bottom: 20px solid #eee;
+		border-bottom: .2rem solid #eee;
 }
 #main1 .qq .q1 .q11:nth-child(3){
-	border-bottom: 20px solid #eee;
+	border-bottom: .2rem solid #eee;
 }
 #main1 .qq .q2 .q22:nth-child(3){
-		border-bottom: 20px solid #eee;
+		border-bottom: .2rem solid #eee;
 }
 #main1 .qq .q2 .q22:nth-child(4) img,#main1 .qq .q2 .q22:nth-child(5) img{
-	width:230px;
-	height: 190px;
+	width:100%;
+	height: 1.9rem;
 	display: block;
 	margin: 0 auto;
 }
@@ -223,12 +245,12 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 	overflow: auto;
 }
 #main .ee .e1 img{
-	width: 750px;
-	height: 360px;
+	width:100%;
+	height: 3.6rem;
 }
 #main .ee .e1 .e11{
-	height: 300px;
-	padding: 0 0 40px 0;
+
+	padding: 0 0 .04rem 0;
 	overflow-x: auto;
 		overflow-y: hidden;
 	white-space: nowrap;
@@ -238,28 +260,28 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 	
 }
 #main .ee .e1 .e11 .e111{
-	width: 180px;
-	margin-left: 10px;
+	width: 1.8rem;
+	margin-left: .1rem;
 	vertical-align: top;
 }
 #main .ee .e1 .e11 .e111 dl dt img{
-	width: 180px;
-	height: 180px;
+	width: 1.8rem;
+	height: 1.8rem;
 }
 #main .ee .e1 .e11 .e111 dl{
 	padding: 0 0 .35rem;
     text-align: center;
 }
 #main .ee .e1 .e11 .e111 dl dd:nth-of-type(1){
-	font-size: 24px;
+	font-size: .24rem;
 	color: #60e;
 }
 #main .ee .e1 .e11 .e111 dl dd:nth-of-type(2){
-	font-size: 24px;
+	font-size: .24rem;
     color: #6b6b6b;
     white-space: normal;
     word-break: break-all;
-    height: 56px;
-    line-height: 28px;
+    height: .56rem;
+    line-height: .28rem;
 }
 </style>
