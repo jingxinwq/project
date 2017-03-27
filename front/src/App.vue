@@ -99,6 +99,7 @@ a{
       bottom: 0px;
       width: 100%;
       left:0px;
+      bottom: -2px;
     }
     .footer li{
       flex-direction: column;
@@ -138,7 +139,7 @@ a{
       display: block;
       width: 0.43rem;
       height: 0.43rem;
-      background-size: 100% 100%;
+       
       margin: 0.07rem auto;
     }
      .icon-myjuanpi {
@@ -185,4 +186,25 @@ a{
 		.footer img{
 			margin-top: 0.07rem;
 		}
+    .mint-loadmore{
+      overflow:visible !important;
+      
+    }
+
+     .mint-loadmore-top{
+      overflow: hidden;
+      height:1rem !important;
+      line-height: 1rem !important;
+      margin-top: -1rem !important;
+    }
+    
+    .mint-loadmore-top span{
+
+      font-size: 0.3rem !important;
+      position: relative;
+      top:.2rem;
+    }
+    .mintui {
+      font-size: 0.36rem !important;
+    }
 </style>

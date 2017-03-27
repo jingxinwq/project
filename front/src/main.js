@@ -8,7 +8,9 @@ import resource from "vue-resource";
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import { Header } from 'mint-ui';
+
 Vue.component(Header.name, Header);
+
 
 
 Vue.prototype.$http = axios

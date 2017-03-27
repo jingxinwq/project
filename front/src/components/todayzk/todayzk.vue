@@ -1,64 +1,80 @@
 <template>
 	<div id="todayzk">
-		<div id="header">
-			<div class="inner">
-				<img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/head/top-logo.png?67655ac3"/>
-			</div>
-		</div>
-		
-	
-		<ul id="nav">
-			<li v-for="data in titleData" key="{{data.title}}">{{data.title}}</li>
-		</ul>
-		
-		<swipe class="my-swipe" :showIndicators="true">
-		  <swipe-item v-for="data in swipeData" key="{{data}}">
-				<img :src="data"/>
-		  </swipe-item>
-		</swipe>
-		
-		<div id="category">
-			<ul>
-				<li v-for="data in categoriesData" key="{{data.words}}">
-					<img :src="data.pic" />
-					<span>{{data.words}}</span>
-				</li>
-			</ul>
-		</div>
-		<!------------------三图片div---------------------->
-		<div id="threeimg">
-			<img class="left" src="//s2.juancdn.com/bao/170322/3/0/58d23ce5ad0a490d0a8b45d7_375x456.png?iopcmd=convert&Q=88&dst=png" />
-			<div class="right">
-				<img src="//s2.juancdn.com/bao/170324/f/8/58d4dbb4ad0a4981738b4599_375x228.jpg?iopcmd=convert&Q=88&dst=jpg" />
-				<img src="//s2.juancdn.com/bao/170324/6/3/58d4dc20ad0a49fe738b459b_375x228.jpg?iopcmd=convert&Q=88&dst=jpg" />
-			</div>
-			
-		</div>
-		
-		<img id="eight" src="http://s2.juancdn.com/bao/170310/0/f/58c20db7a43d1f63427015d8_750x96.jpg?iopcmd=convert&Q=88&dst=jpg"/>
 
-		<div id="goods">
-			<ul>
-				<li v-for="data in goodsData" key="{{data.residue}}">
-					<img :src="data.pic_url"/>
-					<div v-if="data.coupon != undefined" >
-						<div class="up">
-							<span class="upl" >{{data.coupon.rules[0].aeBankInfo}}</span>
-							<span class="upr">{{data.residue}}</span>
-						</div>
-						<span class="down">{{data.coupon.abName}}</span>
-						
-					</div>
-					<div v-if="data.coupon == undefined" >
-						<div class="up">
-							<span class="upl" >{{data.sub_title}}</span>
-							<span class="upr">{{data.residue}}</span>
-						</div>
-						<span class="down">{{data.main_title}}</span>
-					</div>
-				</li>
-			</ul>
-		</div>
+    <mt-loadmore :top-method="loadTop" :top-all-loaded="allLoaded" ref="loadmore" @top-status-change="handleTopChange">
+
+      <div slot="top" class="mint-loadmore-top">
+        <span v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">下拉刷新</span>
+        <span v-show="topStatus === 'loading'">正在刷新数据...</span>
+      </div>
+
+      <div id="header">
+        <div class="inner">
+          <img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/head/top-logo.png?67655ac3"/>
+        </div>
+      </div>
+      
+      <ul id="nav">
+        <li v-for="data in titleData" key="{{data.title}}">{{data.title}}</li>
+      </ul>
+      
+      <swipe class="my-swipe" :showIndicators="true">
+        <swipe-item v-for="data in swipeData" key="{{data}}">
+          <img :src="data"/>
+        </swipe-item>
+      </swipe>
+      
+      <div id="category">
+        <ul>
+          <li v-for="data in categoriesData" key="{{data.words}}">
+            <img :src="data.pic" />
+            <span>{{data.words}}</span>
+          </li>
+        </ul>
+      </div>
+      <!------------------三图片div---------------------->
+      <div id="threeimg">
+        <img class="left" src="//s2.juancdn.com/bao/170322/3/0/58d23ce5ad0a490d0a8b45d7_375x456.png?iopcmd=convert&Q=88&dst=png" />
+        <div class="right">
+          <img src="//s2.juancdn.com/bao/170324/f/8/58d4dbb4ad0a4981738b4599_375x228.jpg?iopcmd=convert&Q=88&dst=jpg" />
+          <img src="//s2.juancdn.com/bao/170324/6/3/58d4dc20ad0a49fe738b459b_375x228.jpg?iopcmd=convert&Q=88&dst=jpg" />
+        </div>
+        
+      </div>
+      
+      <img id="eight" src="http://s2.juancdn.com/bao/170310/0/f/58c20db7a43d1f63427015d8_750x96.jpg?iopcmd=convert&Q=88&dst=jpg"/>
+
+      <div id="goods">
+        <ul 
+          v-infinite-scroll="loadMore"
+		  infinite-scroll-disabled="loading"
+		  infinite-scroll-distance="10">
+          
+          <li v-for="data in goodsData" key="{{data.residue}}">
+
+            <img :src="data.pic_url"/>
+            <div v-if="data.coupon != undefined" >
+              <div class="up">
+                <span class="upl" >{{data.coupon.rules[0].aeBankInfo}}</span>
+                <span class="upr">{{data.residue}}</span>
+              </div>
+              <span class="down">{{data.coupon.abName}}</span>
+              
+            </div>
+            <div v-if="data.coupon == undefined" >
+              <div class="up">
+                <span class="upl" >{{data.sub_title}}</span>
+                <span class="upr">{{data.residue}}</span>
+              </div>
+              <span class="down">{{data.main_title}}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </mt-loadmore>
+
+		
 	</div>
 </template>
 
@@ -66,7 +82,13 @@
 import { Swipe, SwipeItem } from 'vue-swipe';
 // import router from "../router" ;
 import axios from "axios";
-import VueResouse from 'vue-resource'
+import Vue from 'vue'
+import VueResouse from 'vue-resource';
+import { Loadmore } from 'mint-ui';
+import { InfiniteScroll } from 'mint-ui';
+
+Vue.use(InfiniteScroll)
+Vue.component(Loadmore.name, Loadmore);
 
 require('vue-swipe/dist/vue-swipe.css');
 
@@ -79,11 +101,16 @@ export default {
 		swipeData:[],
 		categoriesData:"",
 		goodsNameData:[],
-		goodsData:[]
+		goodsData:[],
+	    topStatus:"",
+	    loadmoreData:1,
+	    allLoaded:false,
+	    loading:false
     }
   },
   mounted(){
   	//ajax 请求
+  	//获取导航
   	axios.get("http://localhost:3000/homeapi/select1_1")
       .then( response=>{	
 //    	console.log(response)
@@ -96,7 +123,8 @@ export default {
       .catch(function (error) {
         console.log(error);
 		});
-		
+
+		//获取轮播
 	this.$http.jsonp("http://ad.juanpi.com/advert/ad?unique=module_ads%2Cbanner_ads%2Ctopbanner%2Cpopup_ads&cat_name=newest_zhe&zy_id=c3_l1_18_51_5&platform=m&_=1490441007163&",
       {//请求参数
         jsonp:'callback'
@@ -112,17 +140,19 @@ export default {
       	
       });
 		
-	this.$http.jsonp("https://shop.juanpi.com/gsort?key=zuixinzhekou&type=1&zhouyi_ids=p8_c3_l1_18_51_5&machining=hotcoupon&page=1&rows=10&dtype=JSONP&cm=1&cm_channel=1&",
-      {//请求参数
-        jsonp:'callback'
-      }).then(function(res){
-        console.log(res.body)
-		for(var i = 0;i<res.body.list.length;i++){
-			this.goodsData.push(res.body.list[i])
-        }
-		console.log(this.goodsData)
-      },function(){
-      });	
+		//获取商品
+	// this.$http.jsonp("https://shop.juanpi.com/gsort?key=zuixinzhekou&type=1&zhouyi_ids=p8_c3_l1_18_51_5&machining=hotcoupon&page=1&rows=10&dtype=JSONP&cm=1&cm_channel=1&",
+ //      {//请求参数
+ //        jsonp:'callback'
+ //      }).then(function(res){
+ //        console.log(res.body)
+	// 	for(var i = 0;i<res.body.list.length;i++){
+	// 		this.goodsData.push(res.body.list[i])
+ //        }
+	// 	console.log(this.goodsData)
+ //      },function(){
+
+ //      });	
 		
   },
   components:{
@@ -132,10 +162,49 @@ export default {
   methods:{
   	changePage(id){
   		router.push({ name: 'detail', params: { restaurantid: id }})
-  	}
-  },
-  computed:{
-  	
+  	},
+
+
+    loadTop() {
+      //下拉刷新
+      this.$http.jsonp("https://shop.juanpi.com/gsort?key=zuixinzhekou&type=1&zhouyi_ids=p8_c3_l1_18_51_5&machining=hotcoupon&page=1&rows=10&dtype=JSONP&cm=1&cm_channel=1&",
+        {//请求参数
+          jsonp:'callback'
+        }).then(function(res){
+          this.goodsData=[]
+	      for(var i = 0;i<res.body.list.length;i++){
+	        this.goodsData.push(res.body.list[i])
+	      }
+	      this.$refs.loadmore.onTopLoaded();
+      // console.log(this.goodsData)
+      },function(){
+
+      }); 
+    },
+    handleTopChange(status) {
+      this.topStatus = status;
+    },
+   
+    loadMore() {
+      // 上滑加载
+      console.log("加载")
+      this.loading = true;
+      this.loadmoreData++;
+      this.$http.jsonp(`https://shop.juanpi.com/gsort?key=zuixinzhekou&type=1&zhouyi_ids=p8_c3_l1_18_51_5&machining=hotcoupon&page=${this.loadmoreData}&rows=10&dtype=JSONP&cm=1&cm_channel=1&`,
+        {//请求参数
+          jsonp:'callback'
+        }).then((res)=>{
+          this.loading = false;
+	      // for(var i = 0;i<res.body.list.length;i++){
+
+	        this.goodsData = [...this.goodsData,...res.body.list]
+	      // }
+	        
+      console.log(this.goodsData)
+        },function(){
+
+        }); 
+    }
   }
 }
 </script>
@@ -149,17 +218,19 @@ export default {
 		width: 100%;
 		height: 0.8rem;
 		background: #fff;
-		
+		overflow: hidden;
 	}
 	#header .inner{
 		text-align: center;
-
 		height: 0.8rem;
+		overflow: hidden;
 	}
 	#header .inner img{
 		vertical-align: middle;
 		height: 0.44rem;
 		background: #fff;
+		margin: 0.2rem auto;
+		display: block;
 	}
 	#nav{
 		width:100%;
@@ -240,6 +311,15 @@ export default {
 	#threeimg .right img{
 		height: 2.275rem;
 		flex: 1;
+	}
+	#goods{
+		/*height:24.25rem;*/
+		height:10rem;
+
+	}
+	#goods ul{
+		display: table;
+		
 	}
 	#goods ul li{
 		width: 3.68rem;
