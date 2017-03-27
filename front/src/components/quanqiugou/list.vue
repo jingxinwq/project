@@ -267,13 +267,13 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 }
 #main{
 	width: 100%;
-	height: 100%;
+	height: 40rem;
 	overflow: auto;
 	background: #fff;
 }
 #main .ee{
 	width: 100%;
-	height: 100%;
+	height: 40rem;
 }
 #main .ee .e1 img{
 	width:100%;
