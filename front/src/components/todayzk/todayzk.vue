@@ -8,18 +8,18 @@
 		
 	
 		<ul id="nav">
-			<li v-for="data in titleData">{{data.title}}</li>
+			<li v-for="data in titleData" key="{{data.title}}">{{data.title}}</li>
 		</ul>
 		
 		<swipe class="my-swipe" :showIndicators="true">
-		  <swipe-item v-for="data in swipeData">
+		  <swipe-item v-for="data in swipeData" key="{{data}}">
 				<img :src="data"/>
 		  </swipe-item>
 		</swipe>
 		
 		<div id="category">
 			<ul>
-				<li v-for="data in categoriesData">
+				<li v-for="data in categoriesData" key="{{data.words}}">
 					<img :src="data.pic" />
 					<span>{{data.words}}</span>
 				</li>
@@ -39,7 +39,7 @@
 
 		<div id="goods">
 			<ul>
-				<li v-for="data in goodsData">
+				<li v-for="data in goodsData" key="{{data.residue}}">
 					<img :src="data.pic_url"/>
 					<div v-if="data.coupon != undefined" >
 						<div class="up">
