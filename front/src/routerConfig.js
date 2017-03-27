@@ -8,6 +8,7 @@ import VueRouter from 'vue-router'
 //import Gouwuche from './components/gouwuche/gouwuche.vue'
 //import Myjuanpi from './components/myjuanpi/myjuanpi.vue'
 //import Zhifacang from './components/zhifacang/zhifacang.vue'
+const Today = resolve => require(["./components/todayzk/today.vue"], resolve)
 const Todayzk = resolve => require(["./components/todayzk/todayzk.vue"], resolve)
 const Quanqiugou = resolve => require(["./components/quanqiugou/quanqiugou.vue"], resolve)
 const List = resolve => require(["./components/quanqiugou/list.vue"], resolve)
@@ -17,12 +18,28 @@ const Gouwuche = resolve => require(["./components/gouwuche/gouwuche.vue"], reso
 const Myjuanpi = resolve => require(["./components/myjuanpi/myjuanpi.vue"], resolve)
 
 const Zhifacang = resolve => require(["./components/zhifacang/zhifacang.vue"], resolve)
+const User = resolve => require(["./components/myjuanpi/user.vue"], resolve)
+const Login = resolve => require(["./components/myjuanpi/login.vue"], resolve)
+const Register = resolve => require(["./components/myjuanpi/register.vue"], resolve)
 
 Vue.use(VueRouter)
 const routes=[
 {
-	path: '/todayzk',
-	component: Todayzk
+	path: '/today',
+	component: Today,
+	redirect:'/today/todayzk',
+	children:[
+			{
+				path:'todayzk',
+				component:Todayzk,
+			},
+			{
+				path:'detail/:Id',
+				component:Detail,
+				name: 'detail'
+			}
+		
+		]
 },
 {
 	path: '/zhifacang',
@@ -51,8 +68,27 @@ const routes=[
 },
 {
 	path: '/myjuanpi',
-	component: Myjuanpi
-}
+	component: Myjuanpi,
+	redirect:'/myjuanpi/user',
+	children:[
+			{
+				path:'user',
+				component:User,
+			},
+			{
+				path:'register',
+				component:Register,
+				name:'register'
+			},
+			{
+				path:'login',
+				component:Login,
+				name:'login'
+			}
+		
+		]
+},
+	// {path:"/*",redirect:"/today"}
 ]
 const router = new VueRouter({
   mode: 'history', //模式改变 (hash,history)

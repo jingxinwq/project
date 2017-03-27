@@ -12,7 +12,7 @@
     <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
     <ul class="footer">
 
-      <router-link to="/todayzk" tag="li" active-class="kerwinAcitive">
+      <router-link to="/today" tag="li" active-class="kerwinAcitive">
         <span class="icon-todayzk"></span>        
         <div>今日折扣</div>
       </router-link>
