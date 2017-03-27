@@ -1,22 +1,21 @@
 <template>
 <div>
-	<Headers/>
-	<Mains/>
-	<Footers/>
+<keep-alive>
+			<router-view > </router-view>
+		</keep-alive>
+	
 </div>
 
 </template>
 <script>
-import Headers from './headers/Header.vue'
-import Mains from './mains/Main.vue'
-import Footers from './footers/Footer.vue'
+
 	export default {
     components: {
-    Headers,Mains,Footers
+
   },
 }
 </script>
-<style>
+<style scoped>
 body{
 	background: #f7f7f7;
 }

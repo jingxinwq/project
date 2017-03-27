@@ -1,5 +1,19 @@
 <template>
-<div class="userBox">
+<div id="all">
+	<header id="head"> 
+		<div class="userTop">
+			 <a id="t-find" class="btnBack" href="javascript:window.history.go(-1)">
+			 <img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/arrow_white.png?5123297e"></a> 
+			 <span id="t-index">个人中心</span> 
+		 </div>
+		 <div class="user-login">
+			 <a  @click="changepage()">登录</a>
+			 <span>|</span>
+			 <a  @click="changepage()">注册</a> 
+		 </div>
+	 </header>
+	
+	<div class="userBox">
 <div id="bgc1">
 	<a href="//m.juanpi.com/order" class="myorder-enter">
 					<span class="mydingdan">我的订单</span>
@@ -50,18 +64,52 @@
 				<input type="hidden" id="isBoxShow" name="isBoxShow" value="0">
 				<input type="hidden" id="fromLoginUrl" name="fromLoginUrl" value="">
 </div>
+	
+</div>
 </template>
 <script>
+import router from "../../routerConfig";
+
 	export default {
-  data () {
-    return {
-      
-    }
-  },
+		   methods:{
+  	changepage(id){
+  		console.log(id)
+  			router.push({ name: 'login'})
+  			router.push({ name: 'register'})
+  	}
+
+  }
 }
 </script>
-<style>
-.userBox{
+<style scoped>
+*{
+	font-size: 0.3rem;
+}
+#all{
+	height: 100%;
+}
+#head{
+	height: 2.5rem;
+	width:100%;
+	background: red;
+	color:white;
+	font-size: 0.5rem
+}
+#t-index{
+	margin-left:2.5rem;
+	font-size: 0.4rem;
+}
+.user-login{
+text-align: center;
+
+}
+.user-login a{
+display: inline-block;
+margin:0.6rem;
+color:white;
+}
+.user-login span{
+color: white;
 }
 .userBox a{
 	text-decoration: none;
@@ -117,5 +165,27 @@
 }
 .userItdivs a span {
 	flex:8;
+}
+
+
+#foot{
+    margin-top:0.4rem; 
+    background: white;
+}
+.foot-nav{
+    text-align: center;
+
+}
+.foot-nav a{
+    margin-left:0.4rem;
+    direction: none;
+    font-size: 0.3rem;
+    color:black;
+}
+.foot-bottom{
+    font-size: 0.3rem;
+    color:#ccc;
+    text-align: center;
+    overflow: hidden;
 }
 </style>

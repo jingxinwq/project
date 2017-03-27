@@ -147,13 +147,13 @@ a{text-decoration:none;}
 body{font:12px/1.5 "微软雅黑";}
  #list{
  	width: 100%;
- 
+  background: #fff;
 
  }
 header{
 	  width: 100%;
 
-    overflow: inherit;
+
     position: relative;
     z-index: 199;
     border-bottom: .01rem solid #dedede;
@@ -222,7 +222,7 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 
 #main1{
 	  width: 100%;
-    height: 100%;
+
     background: #fff;
 }
 #main1 .qq{
@@ -267,13 +267,14 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 }
 #main{
 	width: 100%;
-	height: 40rem;
-	overflow: auto;
+	height: 20rem;
+
 	background: #fff;
 }
 #main .ee{
 	width: 100%;
-	height: 40rem;
+	height:20rem;
+		overflow: auto;
 }
 #main .ee .e1 img{
 	width:100%;
