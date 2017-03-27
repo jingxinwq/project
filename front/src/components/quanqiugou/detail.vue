@@ -39,60 +39,48 @@
 		</div>
 		<div id="main">
 			<ul class="dd">
-				<li class="dd1">
+				<li class="dd1" v-for='data in list1'>
 							<dl>
-								<dt><img src="../../assets/579f0f98151ad16c308b461f_800x800.jpg"/></dt>
+								<dt><img :src="data.picurl"/></dt>
 								<dd>
-									<span>￥65</span>
-									<span>剩3天</span>
+									<span>{{"￥"+data.cprice}}</span>
+									<span v-html='data.residue'></span>
 								</dd>
-								<dd> 全球购 | 德运高钙全脂奶粉(1kg)</dd>
-							</dl>
-				</li>
-				<li class="dd1">
-							<dl>
-								<dt><img src="../../assets/579f0f98151ad16c308b461f_800x800.jpg"/></dt>
-								<dd>
-									<span>￥65</span>
-									<span>剩3天</span>
-								</dd>
-								<dd> 全球购 | 德运高钙全脂奶粉(1kg)</dd>
-							</dl>
-				</li>
-				<li class="dd1">
-							<dl>
-								<dt><img src="../../assets/579f0f98151ad16c308b461f_800x800.jpg"/></dt>
-								<dd>
-									<span>￥65</span>
-									<span>剩3天</span>
-								</dd>
-								<dd> 全球购 | 德运高钙全脂奶粉(1kg)</dd>
-							</dl>
-				</li>
-				<li class="dd1">
-							<dl>
-								<dt><img src="../../assets/579f0f98151ad16c308b461f_800x800.jpg"/></dt>
-								<dd>
-									<span>￥65</span>
-									<span>剩3天</span>
-								</dd>
-								<dd> 全球购 | 德运高钙全脂奶粉(1kg)</dd>
+								<dd>{{ "全球购 "+data.title}}</dd>
 							</dl>
 				</li>
 			</ul>
 		</div>
+		<div class="cc">
+			亲，已经到底了
+		</div>
+		<div class="ff"></div>
   </div>
 </template>
 
 <script>
-
+import axios from "axios";
+import router from "../../routerConfig";
 export default {
   name: 'detail',
   data () {
     return {
-
+			list1:[]
     }
-  }
+  },
+  mounted(){
+
+  	axios.get('http://localhost:3000/homeapi/goodsShop',{params: {id: this.$route.params.Id}
+						}).then(response=>{
+  							console.log(response)
+  							
+								this.list1=response.data.data
+								
+  						})
+  						.catch(function (error) {
+                console.log(error);
+              });  
+	}
 }
 </script>
 
@@ -100,62 +88,28 @@ export default {
 #detail{
 	width: 100%;
 	height: 100%;
+	background: #fff;
 }
 .mint-header{
 	    width: 100%;
-	    height: 88px!important;
+	    height: .88rem!important;
     max-width: 16rem;
-    min-width: 8rem;
+
     overflow: inherit;
     position: relative;
     z-index: 199;
-    border-bottom: 1px solid #dedede;
- font-size: 36px!important;
+    border-bottom: .01rem solid #dedede;
+ font-size: .36rem!important;
+ background: #fff;
+ color: #000000;
 }
-.mint-header .mint-header-title{
-	    font-size: 36px!important;
-	   box-sizing: border-box;
-    color: #4a4a4a;
-        text-align: center;
-    cursor: default;
-    width: 90%;
-    left: 5%;
-    position: absolute;
-    height: 88px;
-    line-height: 88px;
-}
-.mint-header .mint-button{
-    background-color: transparent;
-    border: 0;
-    box-shadow: none;
-    color: inherit;
-    display: inline-block;
-    padding: 0;	
-}
-.mint-header-button .mint-button-icon{
-	display: block;
-	height: 48px;
-	width:49px;
-	font-size: 30px!important;
-	    vertical-align: middle;
-    display: inline-block
-}
-.mint-header-button .mint-button-icon .mintui{
 
-	font-size: 30px!important;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-stroke-width: 0.2px;
-}
-.mintui-back{
-	font-size: 30px!important;
-}
-.mintui{
-		font-size: 30px!important;
-}
+
+
 #nav .rr{
-	height: 142px;
+	height: 1.42rem;
 	display: flex;
+		background: #fff;
 
 }
 #nav .rr .r1{
@@ -163,37 +117,38 @@ export default {
 }
 #nav .rr .r1 img{
 display: block;
-margin: 20px auto;
+margin: .2rem auto;
 }
 #nav .rr .r2{
 	flex: 3;
-		font-size: 28px;
-		line-height:60px ;
+		font-size: .28rem;
+		line-height:.6rem;
 	
 }
 #nav .rr2{
-	height: 100px;
-	font-size: 24px;
+	height: 1rem;
+	font-size: .24rem;
 }
 #nav .rr2 div{
-	line-height: 50px;
+	line-height: .5rem;
 }
 #nav .rr2 span{
 	display: inline-block;
-	width: 90px;
-	padding-left: 30px;
+	width: .9rem;
+	padding-left: .3rem;
 }
 #nav .rr2 p{
 	display: inline-block
 }
 #hq{
-	padding: 10px 0;
-	font-size: 28px;
-	border-bottom: 1px solid #e7e7d7;
-	height: 80px;
-	line-height: 80px;
+	padding: .01rem 0;
+	font-size: .28rem;
+	border-bottom: 0.01rem solid #e7e7d7;
+	height: .8rem;
+	line-height:.8rem;
 	text-align: center;
-width: 100%;
+width: 100%;	
+background: #fff;
 
 	
 }
@@ -207,16 +162,19 @@ width: 100%;
 }
 .oo{
 	width: 100%;
-	height: 60px;
+	height: .6rem;
 	background: #f7f7f7;
+
 }
 #main{
 	width: 100%;
+		background: #fff;
 }
 #main ul{
 	  display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
 }
 #main ul li{
 	    width: 50%;
@@ -224,11 +182,20 @@ width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-        height: 400px;
+        height: 4rem;
+           box-sizing: border-box;
 
 }
+#main ul li:nth-child(odd){
+	border-right:0.08rem solid #f7f7f7;
+	border-bottom: 0.16rem solid #f7f7f7;
+}
+#main ul li:nth-child(even){
+	border-right:0.08rem solid #f7f7f7;
+	border-bottom: 0.16rem solid #f7f7f7;
+}
 #main ul li dl dt{
-	height: 310px;
+	height: 3.1rem;
 	width: 100%;
 	
 }
@@ -239,11 +206,25 @@ width: 100%;
 #main ul li dl dd{
 	    margin-left: 4%;
     margin-right: 4%;
-    margin-top: 2px;
-    line-height: 40px;
-    height: 40px;
-    font-size: 24px;
+    margin-top: 0.02rem;
+    line-height: .4rem;
+    height: .4rem;
+    font-size:.24rem;
     white-space: nowrap;
     overflow: hidden;
+}
+.cc{
+	width: 100%;
+	height: 1rem;
+	background: #f7f7f7;
+	font-size: .3rem;
+	color: #000000;
+	line-height: 1rem;
+	text-align: center;
+	
+}
+.ff{
+		width: 100%;
+	height: 1rem;
 }
 </style>

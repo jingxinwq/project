@@ -37,7 +37,8 @@
 				</div>
   		</div>
   		<div id='main'>
-  			<ul class="ee">
+  			<ul class="ee"  v-infinite-scroll="loadMore" 
+	 				 							infinite-scroll-disabled="loading" infinite-scroll-distance="5">
   					<li class="e1" v-for='data in active' v-show="data.shop_cover!=undefined">
   						<img :src='data.shop_cover' @click="changepage(data.shop_id)"/>
   						<ul class="e11">
@@ -60,7 +61,9 @@
 
 <script>
 import router from "../../routerConfig";
-
+import Vue from "vue";
+import { InfiniteScroll } from 'mint-ui';
+Vue.use(InfiniteScroll);
 export default {
   name: 'list',
   data () {
@@ -69,13 +72,16 @@ export default {
 			nav:[],
 			list1:[],
 			list2:[],
-			active:[]
+			active:[],    	
+			pageIndex:1,
+    	loading:false
 			
 			
     }
   },
   
   mounted(){
+  	
   	 	this.$http.jsonp('http://ad.juanpi.com/advert/ad?unique=module_ads%2Cbanner_ads&cid=310&zy_id=c3_l1_18_51_5&platform=m&_=1490405789194&callback=jsonp1').then(res=>{
 //		console.log(res.body.module_ads.multi_block[0].data[0].child[0].pic)
   		this.swipe=res.body.banner_ads;
@@ -84,15 +90,34 @@ export default {
 //		console.log(this.nav)
   		},errro=>{
   			
-  		}),
-  	 	this.$http.jsonp('https://shop.juanpi.com/gsort?key=310&type=6&zhouyi_ids=p8_c3_l1_18_51_5&machining=showshopgoods&page=1&rows=10&callback=gsort_callback').then(res=>{
-  		console.log(res.body.list[0].shop_goods)
-  		this.active=res.body.list
-  		},errro=>{
-  			
-  		})  		
+  		})
+		
   },
    methods:{
+   	  	loadMore() {
+					
+				  this.loading = true;
+		
+				  				
+		    	//ajax;
+		  		
+		  	 console.log(1);
+				
+				 this.getData(this.pageIndex);
+			},
+				getData(data){
+					this.pageIndex++
+	  	 		this.$http.jsonp(`https://shop.juanpi.com/gsort?key=310&type=6&zhouyi_ids=p8_c3_l1_18_51_5&machining=showshopgoods&page=${data}&rows=10&callback=gsort_callback`).then(res=>{
+//			  		console.log(res.body.list[0].shop_goods)
+			  		this.loading=false
+			  		
+			  				this.active=[...this.active,...res.body.list]
+			  	
+			  		
+  						},errro=>{
+  			
+  				})  
+			},
   	changepage(id){
   		console.log(id)
   			router.push({ name: 'detail', params: { Id: id }})
@@ -108,7 +133,6 @@ export default {
 		height:100%;
     font-weight: 300px;
     width:100%;
-    overflow: scroll;
     
 }
 
@@ -124,7 +148,7 @@ body{font:12px/1.5 "微软雅黑";}
  #list{
  	width: 100%;
  
- 	overflow: auto;
+
  }
 header{
 	  width: 100%;
@@ -199,7 +223,6 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 #main1{
 	  width: 100%;
     height: 100%;
-    overflow: auto;
     background: #fff;
 }
 #main1 .qq{
@@ -247,6 +270,10 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 	height: 100%;
 	overflow: auto;
 	background: #fff;
+}
+#main .ee{
+	width: 100%;
+	height: 100%;
 }
 #main .ee .e1 img{
 	width:100%;
