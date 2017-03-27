@@ -38,7 +38,7 @@
   		</div>
   		<div id='main'>
   			<ul class="ee">
-  					<li class="e1" v-for='data in active'  >
+  					<li class="e1" v-for='data in active' v-show="data.shop_cover!=undefined">
   						<img :src='data.shop_cover' @click="changepage(data.shop_id)"/>
   						<ul class="e11">
   							<li class="e111" v-for='data in data.shop_goods'>
@@ -109,6 +109,7 @@ export default {
     font-weight: 300px;
     width:100%;
     overflow: scroll;
+    
 }
 
 
@@ -133,6 +134,7 @@ header{
     z-index: 199;
     border-bottom: .01rem solid #dedede;
     height: .88rem;
+    background: #fff;
 }
 header .ha{
 	    height: .88rem;
@@ -198,6 +200,7 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 	  width: 100%;
     height: 100%;
     overflow: auto;
+    background: #fff;
 }
 #main1 .qq{
 		display: flex;
@@ -243,6 +246,7 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 	width: 100%;
 	height: 100%;
 	overflow: auto;
+	background: #fff;
 }
 #main .ee .e1 img{
 	width:100%;
