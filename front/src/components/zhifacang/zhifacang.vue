@@ -1,1 +1,11 @@
-直发仓
+<template>
+
+</template>
+
+<script>
+
+</script>
+
+<style scoped>
+
+</style>

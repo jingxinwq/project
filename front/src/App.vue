@@ -13,27 +13,27 @@
     <ul class="footer">
 
       <router-link to="/todayzk" tag="li" active-class="kerwinAcitive">
-        <img class="routerimg" :src="appData[0].bg_icon" />
+        <span class="icon-todayzk"></span>        
         <div>今日折扣</div>
       </router-link>
 
       <router-link to="/zhifacang" tag="li" active-class="kerwinAcitive">
-        <!--<img :src="'https:'+appData[1].bg_icon" />-->
+        <span class="icon-zhifacang"></span>
         <div>直发仓</div>
       </router-link>
 
       <router-link to="/quanqiugou" tag="li" active-class="kerwinAcitive">
-        <!--<img :src="'https:'+appData[2].bg_icon" />-->
+        <span class="icon-quanqiugou"></span>
         <div>全球购</div>
       </router-link>
 
       <router-link to="/gouwuche" tag="li" active-class="kerwinAcitive">
-        <!--<img :src="'https:'+appData[3].bg_icon" />-->
+        <span class="icon-gouwuche"></span>
         <div>购物车</div>
       </router-link>
 
       <router-link to="/myjuanpi" tag="li" active-class="kerwinAcitive">
-        <!--<img :src="'https:'+appData[4].bg_icon" />-->
+        <span class="icon-myjuanpi"></span>
         <div>我的卷皮</div>
       </router-link>
 
@@ -53,11 +53,12 @@ export default {
   },
   mounted(){
     //ajax 请求
+
     axios.get("http://localhost:3000/homeapi/select1_1")
       .then( response=>{  
-//      console.log(response)
+     // console.log(response)
         this.appData = response.data.menu_list
-        
+        console.log(this.appData)
       })
       .catch(function (error) {
         console.log(error);
@@ -72,7 +73,6 @@ export default {
     *{
       margin:0px;
       padding:0px;
-<<<<<<< HEAD
     }
     :root{
     	background: #f2f2f2;
@@ -107,7 +107,62 @@ export default {
     .footer li .routerimg{
     	width: 0.44rem;
     }
+    .icon-todayzk {
+      background: url('http://s2.juancdn.com/bao/160823/6/4/57bbb0bb151ad170288b45ad_72x72.png');
+      display: block;
+      width: 0.43rem;
+      height: 0.43rem;
+      margin: 0.07rem auto;
+    }
+    .icon-zhifacang {
+      background: url('http://s2.juancdn.com/bao/170223/2/8/58aebd7adb01d956348b45d1_72x72.png');
+      display: block;
+      width: 0.43rem;
+      height: 0.43rem;
+      margin: 0.07rem auto;
+    }
+     .icon-quanqiugou {
+      background: url('http://s2.juancdn.com/bao/160914/9/b/57d8ca80151ad15b618b4584_72x72.png');
+      display: block;
+      width: 0.43rem;
+      height: 0.43rem;
+      margin: 0.07rem auto;
+    }
+    .icon-gouwuche {
+      background: url('http://s2.juancdn.com/bao/160823/0/3/57bbb0f0151ad15a2a8b458f_72x72.png');
+      display: block;
+      width: 0.43rem;
+      height: 0.43rem;
+      margin: 0.07rem auto;
+    }
+     .icon-myjuanpi {
+      background: url('http://s2.juancdn.com/bao/160914/0/d/57d8ca99151ad109618b4584_72x72.png');
+      display: block;
+      width: 0.43rem;
+      height: 0.43rem;
+      margin: 0.07rem auto;
+    }
+    .kerwinAcitive .icon-todayzk {
+      background: url('http://s2.juancdn.com/bao/160823/9/a/57bbb0be151ad154148b45f7_72x72.png');
+      background-size: 100% 100%;
+    }
+    .kerwinAcitive .icon-zhifacang {
+      background: url('http://s2.juancdn.com/bao/170223/f/7/58aebd7d151ad103118b4582_72x72.png');
+      background-size: 100% 100%;
+    }
+    .kerwinAcitive .icon-quanqiugou {
+      background: url('http://s2.juancdn.com/bao/160914/4/a/57d8ca82151ad142628b458f_72x72.png');
+      background-size: 100% 100%;
+    }
+    .kerwinAcitive .icon-gouwuche {
+      background: url('http://s2.juancdn.com/bao/160823/7/3/57bbb0f3151ad13b318b458a_72x72.png');
+      background-size: 100% 100%;
+    }
 
+    .kerwinAcitive .icon-myjuanpi {
+      background: url('http://s2.juancdn.com/bao/160823/2/3/57bbb103151ad16c278b45b5_72x72.png');
+      background-size: 100% 100%;
+    }
     .kerwinAcitive{
        color:#FF464E;
     }
