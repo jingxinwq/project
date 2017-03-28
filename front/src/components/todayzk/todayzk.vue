@@ -48,7 +48,7 @@
 			  infinite-scroll-disabled="loading"
 			  infinite-scroll-distance="10">
 	          
-	          <li v-for="data in goodsData" key="{{data.residue}}" @click="changepage(data.shop_id)">
+	          <li v-for="data in goodsData" key="{{data.residue}}" @click="changepage(data.shop_id,data.brand_id,data.goods_id)">
 	            <img :src="data.pic_url"/>
 	            <div v-if="data.coupon != undefined" >
 	              <div class="up">
@@ -123,7 +123,7 @@ export default {
 	this.$http.jsonp("http://ad.juanpi.com/advert/ad?unique=module_ads%2Cbanner_ads%2Ctopbanner%2Cpopup_ads&cat_name=newest_zhe&zy_id=c3_l1_18_51_5&platform=m&_=1490441007163&",
       {//请求参数
         jsonp:'callback'
-      }).then(function(res){
+      }).then((res)=>{
         for(var i = 0;i<res.body.banner_ads.length;i++){
         	this.swipeData.push(res.body.banner_ads[i].pic)
         }
@@ -139,9 +139,10 @@ export default {
 	"swipe-item":SwipeItem
   },
   methods:{
-  	changepage(id){
-  		console.log(id)
-  			router.push({ name: 'detail1', params: { Id: id }})
+  	changepage(id,brand_id,goods_id){
+  		console.log(id);
+  		console.log(goods_id);
+  			router.push({ name: 'detail1', params: { Id: id ,brand_Id:brand_id,goods_Id:goods_id}})
   	},
 
     loadTop() {

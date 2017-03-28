@@ -17,11 +17,13 @@
 				</div>
 			</div>
 
-			<div class="rr2">
-				<div class="r2"><span>满赠</span>
+			<div class="sale">
+				<div class="saleup">
+					<span>满赠</span>
 					<p>满1元即赠69元优惠券，限赠一次，数量有限，赠完即止</p>
 				</div>
-				<div class="r3"><span>满件减</span>
+				<div class="saledown">
+					<span>满件优惠</span>
 					<p>满2件减3元，满3件减8元</p>
 				</div>
 			</div>
@@ -34,27 +36,29 @@
 				<li>仅看有货</li>
 			</ul>
 		</div>
-		<div class="oo">
+		<div class="time">
 			
 		</div>
+
 		<div id="main">
-			<ul class="dd">
-				<li class="dd1" v-for='data in list1'>
-							<dl>
-								<dt><img :src="data.picurl"/></dt>
-								<dd>
-									<span>{{"￥"+data.cprice}}</span>
-									<span v-html='data.residue'></span>
-								</dd>
-								<dd>{{ "全球购 "+data.title}}</dd>
-							</dl>
+			<ul class="goods">
+				<li v-for='data in list1'>
+					<dl>
+						<dt><img :src="data.picurl"/></dt>
+						<dd class="up">
+							<span class="left">{{"￥"+data.cprice}}</span>
+							<span class="right" v-html='data.residue'></span>
+						</dd>
+						<dd class="down">{{data.title}}</dd>
+					</dl>
 				</li>
 			</ul>
 		</div>
-		<div class="cc">
+
+		<div class="bottom">
 			亲，已经到底了
 		</div>
-		<div class="ff"></div>
+		<!-- <div class="empty"></div> -->
   </div>
 </template>
 
@@ -65,22 +69,39 @@ export default {
   name: 'detail',
   data () {
     return {
-			list1:[]
+			list1:[],
+			list2:""
     }
   },
   mounted(){
 
-  	axios.get('http://localhost:3000/homeapi/goodsShop_1',{params: {id: this.$route.params.Id}
-						}).then(response=>{
-  							console.log(response)
-  							
-								this.list1=response.data.data
-								
-  						})
-  						.catch(function (error) {
-                console.log(error);
-              });  
+  	axios.get('http://localhost:3000/homeapi/goodsShop_1',
+  		{params: {id: this.$route.params.Id}
+
+		}).then(response=>{
+			console.log(response)	
+			this.list1=response.data.data	
+		})
+		.catch(function (error) {
+	    console.log(error);
+	  });  
+
+	axios.get('http://localhost:3000/homeapi/saleInfo',
+  		{params: {goods_id: this.$route.params.goods_Id}
+
+		}).then(response=>{
+			console.log(response)	
+			this.list2=response.data
+		})
+		.catch(function (error) {
+	    console.log(error);
+	  });  
+
+
+
 	}
+
+
 }
 </script>
 
@@ -91,19 +112,30 @@ export default {
 	background: #fff;
 }
 .mint-header{
-	    width: 100%;
-	    height: .88rem!important;
+    width: 100%;
+    height: 0.88rem !important;
+    line-height: 0.88rem !important;
     max-width: 16rem;
-
+	padding: 0 0.16rem;
     overflow: inherit;
     position: relative;
     z-index: 199;
-    border-bottom: .01rem solid #dedede;
- font-size: .36rem!important;
- background: #fff;
- color: #000000;
+    border-bottom: 0.01rem solid #dedede;
+	font-size: .36rem!important;
+	background: #fff;
+	color: #000;
 }
-
+.mint-button-icon{
+	vertical-align: baseline;
+}
+.mint-header-button > a{
+	height: 0.8rem;
+	line-height:0.8rem;
+}
+.mint-header-button > a button{
+	height: 0.8rem;
+	line-height:0.8rem;
+}
 
 
 #nav .rr{
@@ -116,28 +148,35 @@ export default {
 	flex: 2;
 }
 #nav .rr .r1 img{
-display: block;
-margin: .2rem auto;
+	display: block;
+	margin: .2rem auto;
 }
 #nav .rr .r2{
 	flex: 3;
-		font-size: .28rem;
-		line-height:.6rem;
+	font-size: .28rem;
+	line-height:.6rem;
 	
 }
-#nav .rr2{
+
+/*03.28 10:56fixed*/
+#nav .sale{
 	height: 1rem;
 	font-size: .24rem;
 }
-#nav .rr2 div{
-	line-height: .5rem;
+#nav .sale div{
+	/*line-height: .5rem;*/
+	margin-top: 0.1rem
 }
-#nav .rr2 span{
+#nav .sale span{
 	display: inline-block;
-	width: .9rem;
-	padding-left: .3rem;
+	/*width: .9rem;*/
+	text-align: center;
+	padding: 0 0.05rem;
+	border: 1px solid #ff464e;
+	color: #ff464e;
+	margin: 0 0.1rem 0 0.2rem;
 }
-#nav .rr2 p{
+#nav .sale p{
 	display: inline-block
 }
 #hq{
@@ -147,10 +186,8 @@ margin: .2rem auto;
 	height: .8rem;
 	line-height:.8rem;
 	text-align: center;
-width: 100%;	
-background: #fff;
-
-	
+	width: 100%;	
+	background: #fff;
 }
 #hq ul{
 		display: flex;
@@ -158,62 +195,71 @@ background: #fff;
 #hq ul li{
 	display: inline-block;
 	flex: 1;
-	
 }
-.oo{
+.time{
 	width: 100%;
-	height: .6rem;
+	height: 0.9rem;
 	background: #f7f7f7;
 
 }
+
+/*03.28 09:44fixed*/
 #main{
 	width: 100%;
 		background: #fff;
 }
 #main ul{
-	  display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+	/*display: table;*/
 
 }
 #main ul li{
-	    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-        height: 4rem;
-           box-sizing: border-box;
+	width: 3.68rem;
+	height: 4.79rem;
+	float: left;
+	margin-top: 0.14rem;
+	margin-right: 0.14rem;
+	background: #fff;
+}
 
+#main ul li:nth-child(2n){
+	margin-right: 0;
 }
-#main ul li:nth-child(odd){
-	border-right:0.08rem solid #f7f7f7;
-	border-bottom: 0.16rem solid #f7f7f7;
-}
-#main ul li:nth-child(even){
-	border-right:0.08rem solid #f7f7f7;
-	border-bottom: 0.16rem solid #f7f7f7;
-}
+
 #main ul li dl dt{
-	height: 3.1rem;
 	width: 100%;
 	
 }
 #main ul li dl dt img{
 	width: 100%;
-	height: 100%;
+	display: block;
+	overflow: hidden;
 }
 #main ul li dl dd{
-	    margin-left: 4%;
-    margin-right: 4%;
-    margin-top: 0.02rem;
+	margin-left: 6%;
+    margin-right: 6%;
+    margin-top: 0.1rem;
     line-height: .4rem;
     height: .4rem;
     font-size:.24rem;
     white-space: nowrap;
     overflow: hidden;
 }
-.cc{
+#main ul li dl dd .left{
+	float: left;
+	color: #ff464e;
+	font-size:0.28rem;
+}
+#main ul li dl dd .right{
+	float: right;
+	font-size: 0.2rem;
+	color: #bbb;
+}
+#main ul li dl dd.down{
+	font-size: 0.22rem;
+	color: #6b6b6b;
+	margin-top: 0.03rem;
+}
+.bottom{
 	width: 100%;
 	height: 1rem;
 	background: #f7f7f7;
@@ -223,8 +269,8 @@ background: #fff;
 	text-align: center;
 	
 }
-.ff{
-		width: 100%;
+.empty{
+	width: 100%;
 	height: 1rem;
 }
 </style>

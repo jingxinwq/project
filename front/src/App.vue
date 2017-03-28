@@ -139,7 +139,7 @@ a{
       display: block;
       width: 0.43rem;
       height: 0.43rem;
-       
+      background-size: 100% 100%;
       margin: 0.07rem auto;
     }
      .icon-myjuanpi {
