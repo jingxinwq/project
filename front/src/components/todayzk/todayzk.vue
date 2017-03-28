@@ -79,10 +79,12 @@ import router from "../../routerConfig";
 import axios from "axios";
 import Vue from 'vue'
 import VueResouse from 'vue-resource';
-import { Loadmore } from 'mint-ui';
+
 import { InfiniteScroll } from 'mint-ui';
 
 Vue.use(InfiniteScroll)
+
+import { Loadmore } from 'mint-ui';
 Vue.component(Loadmore.name, Loadmore);
 
 require('vue-swipe/dist/vue-swipe.css');

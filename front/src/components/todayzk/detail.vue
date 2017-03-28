@@ -37,7 +37,7 @@
 			</ul>
 		</div>
 		<div class="time">
-			
+			<div class="endtimetitle">距离结束还剩</div>
 		</div>
 
 		<div id="main">
@@ -76,7 +76,7 @@ export default {
   mounted(){
 
   	axios.get('http://localhost:3000/homeapi/goodsShop_1',
-  		{params: {id: this.$route.params.Id}
+  		{params: {id: this.$route.params.Id,brand_id:this.$route.params.brand_Id}
 
 		}).then(response=>{
 			console.log(response)	
@@ -201,6 +201,11 @@ export default {
 	height: 0.9rem;
 	background: #f7f7f7;
 
+}
+.time .endtimetitle{
+	text-align: center;
+	font-size: 0.2rem;
+	color: #bbb;
 }
 
 /*03.28 09:44fixed*/

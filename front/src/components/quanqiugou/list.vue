@@ -40,7 +40,7 @@
   			<ul class="ee"  v-infinite-scroll="loadMore" 
 	 				 							infinite-scroll-disabled="loading" infinite-scroll-distance="5">
   					<li class="e1" v-for='data in active' v-show="data.shop_cover!=undefined">
-  						<img :src='data.shop_cover' @click="changepage(data.shop_id)"/>
+  						<img :src='data.shop_cover' @click="changepage(data.shop_id,data.brand_id)"/>
   						<ul class="e11">
   							<li class="e111" v-for='data in data.shop_goods'>
   								<dl>
@@ -118,9 +118,9 @@ export default {
   			
   				})  
 			},
-  	changepage(id){
+  	changepage(id,id1){
   		console.log(id)
-  			router.push({ name: 'detail2', params: { Id: id }})
+  			router.push({ name: 'detail2', params: { Id: id,Id1:id1 }})
   	}
 
 
