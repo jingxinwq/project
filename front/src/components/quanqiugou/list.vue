@@ -120,7 +120,7 @@ export default {
 			},
   	changepage(id){
   		console.log(id)
-  			router.push({ name: 'detail', params: { Id: id }})
+  			router.push({ name: 'detail2', params: { Id: id }})
   	}
 
 

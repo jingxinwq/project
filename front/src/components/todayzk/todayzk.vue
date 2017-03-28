@@ -48,7 +48,7 @@
 			  infinite-scroll-disabled="loading"
 			  infinite-scroll-distance="10">
 	          
-	          <li v-for="data in goodsData" key="{{data.residue}}">
+	          <li v-for="data in goodsData" key="{{data.residue}}" @click="changepage(data.shop_id)">
 	            <img :src="data.pic_url"/>
 	            <div v-if="data.coupon != undefined" >
 	              <div class="up">
@@ -141,7 +141,7 @@ export default {
   methods:{
   	changepage(id){
   		console.log(id)
-  			router.push({ name: 'detail', params: { Id: id }})
+  			router.push({ name: 'detail1', params: { Id: id }})
   	},
 
     loadTop() {
@@ -177,6 +177,7 @@ export default {
           this.loading = false;
 	      this.goodsData = [...this.goodsData,...res.body.list]
 	      this.loadmoreData++;
+	      console.log(this.goodsData)
         },function(){
 
         }); 

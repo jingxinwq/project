@@ -58,7 +58,7 @@ export default {
       .then( response=>{  
      // console.log(response)
         this.appData = response.data.menu_list
-        console.log(this.appData)
+        // console.log(this.appData)
       })
       .catch(function (error) {
         console.log(error);
