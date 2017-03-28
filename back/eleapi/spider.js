@@ -8,7 +8,17 @@ function request(path,callback){
         hostname: 'm.juanpi.com',
         port: 443, //端口号 https默认端口 443， http默认的端口号是80
         path: path,
-        method: 'GET'
+        method: 'GET',
+        headers:{
+            //伪造请求头
+            "Accept":"application/json",
+            "Content-Type":"application/x-www-form-urlencoded",
+            "Host":"m.juanpi.com",
+            "Origin":"http://m.juanpi.com",
+            "Referer":"http://m.juanpi.com/brand/",
+            "User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+            "X-Requested-With":"XMLHttpRequest"
+        }
     };
 
     var req = https.request(options,function(res){

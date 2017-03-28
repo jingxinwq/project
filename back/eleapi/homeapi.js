@@ -39,20 +39,29 @@ router.get("/select5_1",function(req,res,next){
         res.send(result); // 如果渲染模板 res.render("")
     });
 })
+
 router.get("/goodsShop",function(req,res,next){
     var id = req.query.id;
-    spider("/brand/0?shop_id="+id+"&&user_groupids=p8_c3_a1_l1_222&page=1&is_ajax=1&order=&sort=&isstock=0",function (result) {
+    var id1 = req.query.id1;
+    spider("/brand/"+id1+"?shop_id="+id+"&&user_groupids=p8_c3_a1_l1_222&page=1&is_ajax=1&order=&sort=&isstock=0",function (result) {
         res.send(result); // 如果渲染模板 res.render("")
     });
 })
 
 router.get("/goodsShop_1",function(req,res,next){
     var id = req.query.id;
-    spider("/brand/1896459?shop_id="+id+"&&user_groupids=p8_c3_a1_l1_222&page=1&is_ajax=1&order=&sort=&isstock=0",function (result) {
+    var brand_id = req.query.brand_id;
+    spider("/brand/"+brand_id+"?shop_id="+id+"&&user_groupids=p8_c3_a1_l1_222&page=1&is_ajax=1&order=&sort=&isstock=0",function (result) {
         res.send(result); // 如果渲染模板 res.render("")
     });
 })
 
-
+router.get("/saleInfo",function(req,res,next){
+    var goods_id = req.query.goods_id;
+    spider("/brand/getBrandActInfo?zhouyi_ids=c3&gid="+goods_id,function (result) {
+        console.log(goods_id)
+        res.send(result); // 如果渲染模板 res.render("")
+    });
+})
 
 module.exports = router;

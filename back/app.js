@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require("./eleapi/homeapi");
-
+var api1 = require("./eleapi/restaurantapi");
+var api2 = require("./eleapi/goodsDetail");
 
 //引入cors
 var cors =require("cors");
@@ -36,6 +37,8 @@ app.use('/', routes);
 app.use('/users', users);
 app.use("/homeapi",api);
 
+app.use("/restaurantapi",api1);
+app.use("/goodsDetail",api2);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

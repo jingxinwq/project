@@ -1,6 +1,6 @@
 <template>
   <div id="detail">
-		<mt-header title="进口食品专场特卖折扣专场，全场1折限时抢-卷皮折扣">
+		<mt-header :title="shopData.title">
 		  <router-link to="/today/todayzk" slot="left" style='font-size: 30px'>
 		    <mt-button icon="back" style='font-size: 30px;'></mt-button>
 		  </router-link>
@@ -9,22 +9,22 @@
 		<div id="nav">
 			<div class="rr">
 				<div class="r1">
-					<img src="../../assets/58aea677151ad13a4f8b45c3_180x90.png"/>
+					<img :src="shopData.img"/>
 				</div>
 				<div class="r2">
-					<p>全球零食小店</p>
-					<p>店铺发货</p>
+					<p>{{shopData.name}}</p>
+					<p class="shopsend">{{shopData.shop}}</p>
 				</div>
 			</div>
 
 			<div class="sale">
 				<div class="saleup">
 					<span>满赠</span>
-					<p>满1元即赠69元优惠券，限赠一次，数量有限，赠完即止</p>
+					<p>{{mzinfo}}</p>
 				</div>
 				<div class="saledown">
 					<span>满件优惠</span>
-					<p>满2件减3元，满3件减8元</p>
+					<p>{{actinfo}}</p>
 				</div>
 			</div>
 		</div>
@@ -38,11 +38,12 @@
 		</div>
 		<div class="time">
 			<div class="endtimetitle">距离结束还剩</div>
+			<div>{{day}}|||||{{second}}</div>
 		</div>
 
 		<div id="main">
 			<ul class="goods">
-				<li v-for='data in list1'>
+				<li v-for='data in list1'  @click="changepage(data.targetUrl)">
 					<dl>
 						<dt><img :src="data.picurl"/></dt>
 						<dd class="up">
@@ -55,10 +56,10 @@
 			</ul>
 		</div>
 
-		<div class="bottom">
+		<!-- <div class="bottom">
 			亲，已经到底了
 		</div>
-		<!-- <div class="empty"></div> -->
+		<div class="empty"></div> -->
   </div>
 </template>
 
@@ -69,34 +70,79 @@ export default {
   name: 'detail',
   data () {
     return {
-			list1:[]
+		list1:[],
+		actinfo:"",
+		mzinfo:"",
+		shopData:"",
+		endtime:""
     }
   },
   mounted(){
 
-  	axios.get('http://localhost:3000/homeapi/goodsShop',{params: {id: this.$route.params.Id,
-  	id1: this.$route.params.Id1}
-						}).then(response=>{
-  							console.log(response)
-  							
-								this.list1=response.data.data
-								
-  						})
-  						.catch(function (error) {
-                console.log(error);
-              });  
-   	axios.get('http://localhost:3000/restaurantapi/obj1',{params: {id: this.$route.params.Id,
-			id1: this.$route.params.Id1
-				}
-				}).then(response=>{
-						console.log(response)
-						
-						
-						
-					})
-					.catch(function (error) {
+  	axios.get('http://localhost:3000/homeapi/goodsShop_1',
+  		{params: {id: this.$route.params.Id,brand_id:this.$route.params.brand_Id}
+
+		}).then(response=>{
+			console.log(response)	
+			this.list1=response.data.data	
+		})
+		.catch(function (error) {
 	    console.log(error);
-	  });               
+	  });  
+
+	axios.get('http://localhost:3000/homeapi/saleInfo',
+  		{params: {id: this.$route.params.Id,goods_id: this.$route.params.goods_Id}
+
+		}).then(response=>{
+			// console.log(response)
+			this.actinfo=response.data.data.actinfo.m
+			this.mzinfo = response.data.data.mzinfo.m[0].txt
+			// console.log(this.list2)
+		})
+		.catch(function (error) {
+	    console.log(error);
+	  });  
+
+	axios.get('http://localhost:3000/restaurantapi/obj1',{params: {id: this.$route.params.Id,
+		id1: this.$route.params.Id1}
+			}).then(response=>{
+			// console.log(response)
+				this.shopData = response.data
+			})
+			.catch(function (error) {
+	    	console.log(error);
+	  }); 
+
+	},
+	methods:{
+		changepage(id){
+	  		console.log(id);
+	  		router.push({ name: 'goodsDetail', params: { goodsId: id}})
+	  	}
+  	},
+	computed:{
+		day:function(){
+			var date = new Date().getTime();
+			var now = parseInt(date.toString().substr(0,10));
+			var endtime = this.$route.params.show_etime;
+			var end = endtime - now;
+			var days = Math.abs(end/(60*60*24));
+  			return days;
+  		},
+
+  		second:function(){
+			var date = new Date().getTime();
+			var now = parseInt(date.toString().substr(0,10));
+			var endtime = this.$route.params.show_etime;
+			var end = endtime - now;
+			var days = Math.abs(end/(60*60*24));
+  			return days;
+  		}
+		
+		// this.day = 
+		// this.hour = parseInt(end/1000/3600%24)
+		// this.minute = parseInt(end/1000/60%60)
+		// this.second = parseInt(end/1000%60)
 	}
 }
 </script>
@@ -137,21 +183,35 @@ export default {
 #nav .rr{
 	height: 1.42rem;
 	display: flex;
-		background: #fff;
+	background: #fff;
 
 }
 #nav .rr .r1{
-	flex: 2;
+	flex: 1.2;
 }
 #nav .rr .r1 img{
+	width: 1.63rem;
+	border: 0.006rem solid #999;
 	display: block;
-	margin: .2rem auto;
+	margin: 0.3rem 0 0 0.2rem;
 }
 #nav .rr .r2{
 	flex: 3;
-	font-size: .28rem;
-	line-height:.6rem;
-	
+	margin-top: 0.3rem;
+	font-size: .26rem;	
+}
+#nav .rr .r2 p{
+
+}
+#nav .rr .r2 .shopsend{
+	background: #f70;
+	color: #fff;
+	width:0.91rem;
+	font-size: 0.19rem;
+	height: 0.35rem;
+	line-height: 0.35rem;
+	text-align: center;
+	margin-top: 0.07rem;
 }
 
 /*03.28 10:56fixed*/

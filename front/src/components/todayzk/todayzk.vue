@@ -48,7 +48,7 @@
 			  infinite-scroll-disabled="loading"
 			  infinite-scroll-distance="10">
 	          
-	          <li v-for="data in goodsData" key="{{data.residue}}" @click="changepage(data.shop_id,data.brand_id,data.goods_id)">
+	          <li v-for="data in goodsData" key="{{data.residue}}" @click="changepage(data.shop_id,data.brand_id,data.goods_id,data.show_etime)">
 	            <img :src="data.pic_url"/>
 	            <div v-if="data.coupon != undefined" >
 	              <div class="up">
@@ -141,10 +141,12 @@ export default {
 	"swipe-item":SwipeItem
   },
   methods:{
-  	changepage(id,brand_id,goods_id){
+  	changepage(id,brand_id,goods_id,show_etime){
   		console.log(id);
+  		console.log(brand_id);
   		console.log(goods_id);
-  			router.push({ name: 'detail1', params: { Id: id ,brand_Id:brand_id,goods_Id:goods_id}})
+  		console.log(show_etime);
+  			router.push({ name: 'detail1', params: { Id: id ,brand_Id:brand_id,goods_Id:goods_id,show_etime:show_etime}})
   	},
 
     loadTop() {

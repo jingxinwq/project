@@ -14,6 +14,7 @@ const Quanqiugou = resolve => require(["./components/quanqiugou/quanqiugou.vue"]
 const List = resolve => require(["./components/quanqiugou/list.vue"], resolve)
 const Detail1 = resolve => require(["./components/todayzk/detail.vue"], resolve)
 const Detail2 = resolve => require(["./components/quanqiugou/detail.vue"], resolve)
+const GoodsDetail = resolve => require(["./components/quanqiugou/goodsDetail.vue"], resolve)
 const Gouwuche = resolve => require(["./components/gouwuche/gouwuche.vue"], resolve)
 
 const Myjuanpi = resolve => require(["./components/myjuanpi/myjuanpi.vue"], resolve)
@@ -59,6 +60,11 @@ const routes=[
 				path:'detail/:Id',
 				component:Detail2,
 				name: 'detail2'
+			},
+			{
+				path:'goodsDetail',
+				component:GoodsDetail,
+				name: 'goodsDetail'				
 			}
 		
 		]
