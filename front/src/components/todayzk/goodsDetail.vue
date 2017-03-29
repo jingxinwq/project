@@ -7,7 +7,7 @@
 					<div class="back" @click="back()">
 						<div>←</div>
 					</div>
-					<img :src="goodsData.topImg1">
+					<img :src="'http:'+goodsData.topImg1">
 				</div>
 
 				<div class="normal">
@@ -24,12 +24,12 @@
 						<span>{{goodsData.world}}</span>
 					</div>
 
-					<div class="time">
+					<!-- <div class="time">
 						<span class="statr-time">
 							<img src="">
 
 						</span>
-					</div>
+					</div> -->
 				</div>
 				<!-- <div class="expand">
 					<div class="show-item">
@@ -55,7 +55,7 @@
 			<div class="item-feature">
 				<div class="seller">
 					<div class="f1">
-						<img :src="goodsData.sellerImg">
+						<img :src="'http:'+goodsData.sellerImg">
 					</div>
 					<div class="f1 desc">
 						<div desc-title>{{goodsData.sellerTitle}}</div>
@@ -88,7 +88,7 @@
 			<div class="goodsimgs">
 				<ul v-for="data in goodsimgsData">
 					<li>
-						<img :src="data">
+						<img :src="'http:'+data">
 					</li>
 				</ul>		
 			</div>

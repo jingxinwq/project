@@ -9,7 +9,7 @@
 		<div id="nav">
 			<div class="rr">
 				<div class="r1">
-					<img :src="shopData.img"/>
+					<img :src="'http:'+shopData.img"/>
 				</div>
 				<div class="r2">
 					<p>{{shopData.name}}</p>
@@ -45,7 +45,7 @@
 			<ul class="goods">
 				<li v-for='data in list1'  @click="changepage(data.targetUrl)">
 					<dl>
-						<dt><img :src="data.picurl"/></dt>
+						<dt><img :src="'http:'+data.picurl"/></dt>
 						<dd class="up">
 							<span class="left">{{"￥"+data.cprice}}</span>
 							<span class="right" v-html='data.residue'></span>

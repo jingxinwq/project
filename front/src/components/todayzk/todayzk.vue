@@ -18,14 +18,14 @@
 	      
 	      <swipe class="my-swipe" :showIndicators="true">
 	        <swipe-item v-for="data in swipeData" key="{{data}}">
-	          <img :src="data"/>
+	          <img :src="'http:'+data"/>
 	        </swipe-item>
 	      </swipe>
 	      
 	      <div id="category">
 	        <ul>
 	          <li v-for="data in categoriesData" key="{{data.words}}">
-	            <img :src="data.pic" />
+	            <img :src="'http:'+data.pic" />
 	            <span>{{data.words}}</span>
 	          </li>
 	        </ul>
@@ -33,10 +33,10 @@
 
 	      <!------------------三图片div---------------------->
 	      <div id="threeimg">
-	        <img class="left" src="//s2.juancdn.com/bao/170322/3/0/58d23ce5ad0a490d0a8b45d7_375x456.png?iopcmd=convert&Q=88&dst=png" />
+	        <img class="left" src="https://s2.juancdn.com/bao/170322/3/0/58d23ce5ad0a490d0a8b45d7_375x456.png?iopcmd=convert&Q=88&dst=png" />
 	        <div class="right">
-	          <img src="//s2.juancdn.com/bao/170324/f/8/58d4dbb4ad0a4981738b4599_375x228.jpg?iopcmd=convert&Q=88&dst=jpg" />
-	          <img src="//s2.juancdn.com/bao/170324/6/3/58d4dc20ad0a49fe738b459b_375x228.jpg?iopcmd=convert&Q=88&dst=jpg" />
+	          <img src="https://s2.juancdn.com/bao/170324/f/8/58d4dbb4ad0a4981738b4599_375x228.jpg?iopcmd=convert&Q=88&dst=jpg" />
+	          <img src="https://s2.juancdn.com/bao/170324/6/3/58d4dc20ad0a49fe738b459b_375x228.jpg?iopcmd=convert&Q=88&dst=jpg" />
 	        </div>
 	      </div>
 	      
@@ -49,7 +49,7 @@
 			  infinite-scroll-distance="10">
 	          
 	          <li v-for="data in goodsData" key="{{data.residue}}" @click="changepage(data.shop_id,data.brand_id,data.goods_id,data.show_etime)">
-	            <img :src="data.pic_url"/>
+	            <img :src="'http:'+data.pic_url"/>
 	            <div v-if="data.coupon != undefined" >
 	              <div class="up">
 	                <span class="upl" >{{data.coupon.rules[0].aeBankInfo}}</span>

@@ -1,58 +1,60 @@
 <template>
   <div id="list">
-			<header>
-				<div class="ha">
-					<span class="ha1">全球购</span>
-					<span class="ha2">
-					</span>
-				</div>
-			</header>
-			<nav>
-    	<mt-swipe :auto="2000">
-		  <mt-swipe-item v-for="data in swipe">
-		  	<img :src="data.pic"/>
-		  </mt-swipe-item>
+		<header>
+			<div class="ha">
+				<span class="ha1">全球购</span>
+				<span class="ha2">
+				</span>
+			</div>
+		</header>
+		<nav>
+	    	<mt-swipe :auto="2000">
+			  <mt-swipe-item v-for="data in swipe">
+			  	<img :src="data.pic"/>
+			  </mt-swipe-item>
 
-		</mt-swipe>
-				
-			</nav>
-			<div id="main1">
-				<div class="qq">
-					<div class="q1">
-						<div class="q11" v-for='data in nav'>
-									<img :src="data.data[0].child[0].pic" />
-						</div>				
-					</div>
-					<div class="q2">
-							<div class="q22" v-for='data in nav'>						
-									<img :src="data.data[0].child[1].pic" />
-							</div>
+			</mt-swipe>
+			
+		</nav>
+		<div id="main1">
+			<div class="qq">
+				<div class="q1">
+					<div class="q11" v-for='data in nav'>
+								<img :src="data.data[0].child[0].pic" />
+					</div>				
+				</div>
+				<div class="q2">
+					<div class="q22" v-for='data in nav'>						
+						<img :src="data.data[0].child[1].pic" />
 					</div>
 				</div>
-				<div class="ww">
-					<div class="w1">
-						
-					</div>
-					<div class="w2"></div>
+			</div>
+			<div class="ww">
+				<div class="w1">
+					
 				</div>
+				<div class="w2"></div>
+			</div>
   		</div>
+
   		<div id='main'>
-  			<ul class="ee"  v-infinite-scroll="loadMore" 
-	 				 							infinite-scroll-disabled="loading" infinite-scroll-distance="5">
-  					<li class="e1" v-for='data in active' v-show="data.shop_cover!=undefined">
-  						<img :src='data.shop_cover' @click="changepage(data.shop_id,data.brand_id)"/>
-  						<ul class="e11">
-  							<li class="e111" v-for='data in data.shop_goods'>
-  								<dl>
-  									<dt>
-  										<img :src='data.pic_url' />
-  									</dt>
-  									<dd>{{"￥"+data.cprice}}</dd>
-  									<dd>{{data.title}}</dd>
-  								</dl>
-  							</li>
-  						</ul>
-  					</li>
+  			<ul class="ee"  v-infinite-scroll="loadMore"
+ 							infinite-scroll-disabled="loading"
+ 							infinite-scroll-distance="5">
+				<li class="e1" v-for='data in active' v-show="data.shop_cover!=undefined">
+					<img :src='data.shop_cover' @click="changepage(data.shop_id,data.brand_id,data.goods_id,data.show_etime)"/>
+					<ul class="e11">
+						<li class="e111" v-for='data in data.shop_goods'>
+							<dl>
+								<dt>
+									<img :src='data.pic_url' />
+								</dt>
+								<dd>{{"￥"+data.cprice}}</dd>
+								<dd>{{data.title}}</dd>
+							</dl>
+						</li>
+					</ul>
+				</li>
   			</ul>
   			
   		</div>
@@ -96,31 +98,28 @@ export default {
    methods:{
    	  	loadMore() {
 					
-				  this.loading = true;
-		
-				  				
-		    	//ajax;
-		  		
-		  	 console.log(1);
-				
-				 this.getData(this.pageIndex);
-			},
-				getData(data){
-					this.pageIndex++
-	  	 		this.$http.jsonp(`https://shop.juanpi.com/gsort?key=310&type=6&zhouyi_ids=p8_c3_l1_18_51_5&machining=showshopgoods&page=${data}&rows=10&callback=gsort_callback`).then(res=>{
+		  this.loading = true;
+		  				
+		    	//ajax; 		
+	  	console.log(1);	
+		this.getData(this.pageIndex);
+		},
+		getData(data){
+					
+  	 		this.$http.jsonp(`https://shop.juanpi.com/gsort?key=310&type=6&zhouyi_ids=p8_c3_l1_18_51_5&machining=showshopgoods&page=${data}&rows=10&callback=gsort_callback`).then(res=>{
 //			  		console.log(res.body.list[0].shop_goods)
-			  		this.loading=false
-			  		
-			  				this.active=[...this.active,...res.body.list]
-			  	
-			  		
-  						},errro=>{
-  			
-  				})  
-			},
-  	changepage(id,id1){
+		  		this.loading=false
+		  		
+  				this.active=[...this.active,...res.body.list]
+		  		this.pageIndex++
+		  		
+					},errro=>{
+			
+				})  
+		},
+  	changepage(id,id1,goods_id,show_etime){
   		console.log(id)
-  			router.push({ name: 'detail2', params: { Id: id,Id1:id1 }})
+  			router.push({ name: 'detail2', params: { Id: id,Id1:id1,goods_Id:goods_id,show_etime:show_etime }})
   	}
 
 
@@ -129,12 +128,12 @@ export default {
 </script>
 
 <style scoped>
-	body,html{
+/*	body,html{
 		height:100%;
     font-weight: 300px;
     width:100%;
     
-}
+}*/
 
 
 
@@ -146,14 +145,12 @@ header,footer,section,figcaption,figure,main,nav,aside,summary,details{
 a{text-decoration:none;}
 body{font:12px/1.5 "微软雅黑";}
  #list{
- 	width: 100%;
-  background: #fff;
-
+ 	overflow: auto;
+	height: 12.53rem;
+	background: #fff;
  }
 header{
-	  width: 100%;
-
-
+    width: 100%;
     position: relative;
     z-index: 199;
     border-bottom: .01rem solid #dedede;
@@ -161,9 +158,9 @@ header{
     background: #fff;
 }
 header .ha{
-	    height: .88rem;
-	    background: #fff;
-	    z-index: 999;
+    height: .88rem;
+    background: #fff;
+    z-index: 999;
     position: absolute;
     width: 100%;
 
@@ -195,21 +192,21 @@ header .ha .ha2{
 	top:.2rem;
 }
 nav{
-	    max-width: 16rem;
-	    height: 2.96rem;
+    max-width: 16rem;
+    height: 2.96rem;
 }
 .mint-swipe-items-wrap {
-		width: 100%;
-	  	height: 2.9rem;
-	  	color: #fff;
-	  	text-align: center;
+	width: 100%;
+  	height: 2.9rem;
+  	color: #fff;
+  	text-align: center;
 
-	}
+}
 
 .mint-swipe-items-wrap img{
-			width: 100%;
-	  	height: 100%;
-	}
+	width: 100%;
+  	height: 100%;
+}
 nav .mint-swipe .mint-swipe-indicators{
 	width: 100%;
 	height: .56rem;
@@ -221,13 +218,11 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 }
 
 #main1{
-	  width: 100%;
-
+	width: 100%;
     background: #fff;
 }
 #main1 .qq{
-		display: flex;
-		
+	display: flex;
 }
 #main1 .qq .q1{
 	flex: 1;
@@ -268,28 +263,28 @@ nav .mint-swipe .mint-swipe-indicators .mint-swipe-indicator{
 #main{
 	width: 100%;
 	height: 20rem;
-
 	background: #fff;
+
 }
 #main .ee{
 	width: 100%;
-	height:20rem;
-		overflow: auto;
+	
 }
 #main .ee .e1 img{
-	width:100%;
 	height: 3.6rem;
 }
 #main .ee .e1 .e11{
 
 	padding: 0 0 .04rem 0;
 	overflow-x: auto;
-		overflow-y: hidden;
+	overflow-y: hidden;
 	white-space: nowrap;
 }
 #main .ee .e1 .e11 li{
 	display: inline-block;
-	
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
 }
 #main .ee .e1 .e11 .e111{
 	width: 1.8rem;

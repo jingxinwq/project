@@ -1,7 +1,7 @@
 <template>
   <div id="detail">
 		<mt-header :title="shopData.title">
-		  <router-link to="/today/todayzk" slot="left" style='font-size: 30px'>
+		  <router-link to="/quanqiugou/list" slot="left" style='font-size: 30px'>
 		    <mt-button icon="back" style='font-size: 30px;'></mt-button>
 		  </router-link>
 		  <mt-button icon="more" slot="right"></mt-button>
@@ -9,7 +9,7 @@
 		<div id="nav">
 			<div class="rr">
 				<div class="r1">
-					<img :src="shopData.img"/>
+					<img :src="'http:'+shopData.img"/>
 				</div>
 				<div class="r2">
 					<p>{{shopData.name}}</p>
@@ -38,14 +38,14 @@
 		</div>
 		<div class="time">
 			<div class="endtimetitle">距离结束还剩</div>
-			<div>{{day}}|||||{{second}}</div>
+			<div class="endtimeshow">{{day}}天{{hour}}时{{minute}}分</div>
 		</div>
 
 		<div id="main">
 			<ul class="goods">
 				<li v-for='data in list1'  @click="changepage(data.targetUrl)">
 					<dl>
-						<dt><img :src="data.picurl"/></dt>
+						<dt><img :src="'http:'+data.picurl"/></dt>
 						<dd class="up">
 							<span class="left">{{"￥"+data.cprice}}</span>
 							<span class="right" v-html='data.residue'></span>
@@ -83,8 +83,13 @@ export default {
   		{params: {id: this.$route.params.Id,brand_id:this.$route.params.brand_Id}
 
 		}).then(response=>{
-			console.log(response)	
-			this.list1=response.data.data	
+			console.log(response)
+			for(var i = 0 ;i<response.data.data.length;i++){
+				response.data.data[i].targetUrl = response.data.data[i].targetUrl.split("//m.juanpi.com")[1];
+			}
+				this.list1=response.data.data
+				console.log(this.list1)
+
 		})
 		.catch(function (error) {
 	    console.log(error);
@@ -126,32 +131,39 @@ export default {
 			var now = parseInt(date.toString().substr(0,10));
 			var endtime = this.$route.params.show_etime;
 			var end = endtime - now;
-			var days = Math.abs(end/(60*60*24));
+			var days = Math.floor(end/(60*60*24));
   			return days;
   		},
 
-  		second:function(){
+  		hour:function(){
 			var date = new Date().getTime();
 			var now = parseInt(date.toString().substr(0,10));
 			var endtime = this.$route.params.show_etime;
 			var end = endtime - now;
-			var days = Math.abs(end/(60*60*24));
-  			return days;
+			var days = parseInt(end / (  60 * 60 * 24));
+		    var hours = parseInt((end % ( 60 * 60 * 24)) / ( 60 * 60));
+		    // var minutes = parseInt((end % ( 60 * 60)) / ( 60));
+  			return hours;
+  		},
+
+  		minute:function(){
+			var date = new Date().getTime();
+			var now = parseInt(date.toString().substr(0,10));
+			var endtime = this.$route.params.show_etime;
+			var end = endtime - now;
+			var h = Math.floor(end / 60 / 60);
+		    var m = Math.floor((end - h * 60 * 60) / 60);
+  			return m;
   		}
-		
-		// this.day = 
-		// this.hour = parseInt(end/1000/3600%24)
-		// this.minute = parseInt(end/1000/60%60)
-		// this.second = parseInt(end/1000%60)
 	}
 }
 </script>
 
 <style scoped>
+
 #detail{
-	width: 100%;
-	height: 100%;
-	background: #fff;
+	overflow: auto;
+	height: 12.53rem;
 }
 .mint-header{
     width: 100%;
@@ -207,7 +219,7 @@ export default {
 	background: #f70;
 	color: #fff;
 	width:0.91rem;
-	font-size: 0.19rem;
+	font-size: 0.21rem;
 	height: 0.35rem;
 	line-height: 0.35rem;
 	text-align: center;
@@ -216,12 +228,13 @@ export default {
 
 /*03.28 10:56fixed*/
 #nav .sale{
-	height: 1rem;
+	height: 0.8rem;
 	font-size: .24rem;
+	background: #fff;
 }
 #nav .sale div{
 	/*line-height: .5rem;*/
-	margin-top: 0.1rem
+	/*margin-top: 0.1rem*/
 }
 #nav .sale span{
 	display: inline-block;
@@ -254,16 +267,20 @@ export default {
 }
 .time{
 	width: 100%;
-	height: 0.9rem;
-	background: #f7f7f7;
-
+	background: #f2f2f2;
+	padding: 0.2rem 0 0.1rem 0;
 }
 .time .endtimetitle{
 	text-align: center;
 	font-size: 0.2rem;
 	color: #bbb;
 }
-
+.time .endtimeshow{
+	text-align: center;
+	font-size: 0.24rem;
+	color: #ff464e;
+	font-weight: bold; 
+}
 /*03.28 09:44fixed*/
 #main{
 	width: 100%;
