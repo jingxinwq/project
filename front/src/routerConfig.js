@@ -27,6 +27,11 @@ const Zhifacang = resolve => require(["./components/zhifacang/zhifacang.vue"], r
 const User = resolve => require(["./components/myjuanpi/user.vue"], resolve)
 const Login = resolve => require(["./components/myjuanpi/login.vue"], resolve)
 const Register = resolve => require(["./components/myjuanpi/register.vue"], resolve)
+const Userinfo = resolve => require(["./components/myjuanpi/userinfo.vue"], resolve)
+const Aboutme = resolve => require(["./components/myjuanpi/aboutme.vue"], resolve)
+const Callcenter = resolve => require(["./components/myjuanpi/callcenter.vue"], resolve)
+const Mycollect = resolve => require(["./components/myjuanpi/mycollect.vue"], resolve)
+const Order = resolve => require(["./components/myjuanpi/order.vue"], resolve)‘
 
 Vue.use(VueRouter)
 const routes=[
@@ -87,22 +92,47 @@ const routes=[
 	component: Myjuanpi,
 	redirect:'/myjuanpi/user',
 	children:[
-		{
-			path:'user',
-			component:User,
-		},
-		{
-			path:'register',
-			component:Register,
-			name:'register'
-		},
-		{
-			path:'login',
-			component:Login,
-			name:'login'
-		}
-	
-	]
+			{
+				path:'user',
+				component:User,
+			},
+			{
+				path:'register',
+				component:Register,
+				name:'register'
+			},
+			{
+				path:'login',
+				component:Login,
+				name:'login'
+			},
+			{
+				path:'userinfo',
+				component:Userinfo,
+				name:'userinfo'
+			},
+
+			{
+				path:'aboutme',
+				component:Aboutme,
+				name:'aboutme'
+			},
+			{
+				path:'callcenter',
+				component:Callcenter,
+				name:'callcenter'
+			},
+			{
+				path:'mycollect',
+				component:Mycollect,
+				name:'mycollect'
+			},
+			{
+				path:'order',
+				component:Order,
+				name:'order'
+			}
+		]
 },
 	// {path:"/*",redirect:"/today"}
 ]

@@ -1,17 +1,31 @@
 <?php
-	$name = $_POST["name"];
-	$password = $_POST["password"];
-header("Access-Control-Allow-Origin: *");
-	//连接数据库
+	header("Access-Control-Allow-Origin:*");
+	
+	$name = $_POST["nam"];
+	
+	$password = $_POST["psw"];
+	
 	$con = mysqli_connect("localhost","root","","test");
-
-	$sql = "SELECT `id`, `name`, `password` FROM `userinfo` WHERE name = '$name' AND password = '$password'";
+	
+	mysqli_query($con,"set names utf-8");
+	
+	$sql = "SELECT `name`, `password` FROM `userinfo` WHERE name = '$name' and password = '$password'";
+	
 	$result = mysqli_query($con,$sql);
-	$test = mysqli_num_rows($result);
-	if(!$test==0){
+	
+	
+	$array=[];
+	
+	while($arr = mysqli_fetch_assoc($result)){
+		$array[]=$arr;
+	}
+	$data = count($array);
+	
+	if($data>0){
 		echo 1;
 	}else{
 		echo 0;
 	}
+	
 	mysqli_close($con);
 ?>

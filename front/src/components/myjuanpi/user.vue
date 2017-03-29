@@ -5,11 +5,17 @@
 			 <a id="t-find" class="btnBack" href="javascript:window.history.go(-1)">
 			 <img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/arrow_white.png?5123297e"></a> 
 			 <span id="t-index">个人中心</span> 
+			  <span  @click="delcookie()" class="tuichu">退出</span>
 		 </div>
-		 <div class="user-login">
-			 <a  @click="changepage()">登录</a>
+		 <div class="user-login" v-if="show">
+			 <a  @click="changepage2()">登录</a>
 			 <span>|</span>
-			 <a  @click="changepage()">注册</a> 
+			 <a  @click="changepage1()">注册</a> 
+
+		 </div>
+		 <div v-else class="comeback">
+		 <p  class="comeback">欢迎{{name}}回来</p>
+		 <p  @click="changinfo" >我的资料、收货地址</p>
 		 </div>
 	 </header>
 	
@@ -61,25 +67,73 @@
 						<div class="arrow"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8"></div>
 					</a>
 				</div>
-				<input type="hidden" id="isBoxShow" name="isBoxShow" value="0">
-				<input type="hidden" id="fromLoginUrl" name="fromLoginUrl" value="">
+<mt-button @click.native="handleClick" size="large">点击触发 handleClick</mt-button>
 </div>
-	
 </div>
 </template>
 <script>
 import router from "../../routerConfig";
-
 	export default {
-		   methods:{
-  	changepage(id){
-  		console.log(id)
-  			router.push({ name: 'login'})
-  			router.push({ name: 'register'})
-  	}
+        data(){
+            return{
+              
+                name:"",
+                show:true
+                // hascookie:false
+            }
+        },
+		created(){
+				 	if(Cookie.getCookie("nam")==''){
+						// this.hascookie=true	
+						// console.log(111);
+				 	}else{
+				 		this.show=false;
+                            this.name=Cookie.getCookie("nam");
+                            // console.log(this.name)
 
-  }
-}
+				 	}
+		},
+
+
+		   methods:{
+		   	changepage2(){
+	  			// router.push({ name: 'register'})
+	  			router.push({ name: 'login'});
+
+	  		
+			},
+			changepage1(){
+	  			router.push({ name: 'register'})
+	  			// router.push({ name: 'login'});
+
+	  		
+			},
+			  
+			delcookie(){
+				// 
+				 Cookie.delCookie("nam");
+				this.show=true;
+			},
+			changinfo(){
+				router.push({ name: 'userinfo'})
+
+			},
+			handleClick(){
+				 	if(Cookie.getCookie("nam")){
+				 		
+					 // router.push({path:"/gouwuche"})
+					console.log(111)
+				 	}else{
+                            router.push({path:"/myjuanpi/login"})
+                            console.log(222)
+
+				 	}
+
+			}
+
+		}
+  	
+  	}
 </script>
 <style scoped>
 *{
@@ -145,7 +199,7 @@ color: white;
 .userItdiv{
 	display: flex;
 	text-align: center;
-	font-size: 0.5rem
+	font-size: 0.5rem;
 }
 .userItdiv a{
 	flex:1;
@@ -187,5 +241,15 @@ color: white;
     color:#ccc;
     text-align: center;
     overflow: hidden;
+}
+.comeback{
+	font-size: 0.4rem;
+	margin:0.2rem;
+
+}
+.tuichu{
+	font-size: 0.4rem;
+	float:right;
+	margin-left:0.4rem;
 }
 </style>

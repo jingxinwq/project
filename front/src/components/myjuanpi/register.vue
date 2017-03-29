@@ -6,13 +6,14 @@
         <br>
         <span>密  码：<input type="text" id="password" v-model="password"></span>
     </div>
-<mt-button size="large"  v-on:click="registernow()">注册</mt-button>
+<mt-button size="large"  @click="registernow">注册</mt-button>
 
 </div>
 </template>
         <script>  
      import $ from "jquery";
      import router from "../../routerConfig"
+     import { MessageBox } from 'mint-ui';
 export default {
         data(){
             return{
@@ -26,7 +27,7 @@ export default {
     methods:{
      
            registernow() {
-                        $.ajax({
+                 $.ajax({
                     url:"http://localhost/my-site/project/php/register.php",
                     data:{
                         nam:this.name,
@@ -35,7 +36,11 @@ export default {
                     type:"post",
                     success:(res)=>{
                         console.log(res)
-                    router.push("/myjuanpi/user")
+                         MessageBox.alert('登录成功').then(action => {
+                         router.push({path:"/myjuanpi/login"})
+                  });
+                      // Cookie.setCookie("nam",this.name,5)
+                    
                         
                     }
                 })
