@@ -300,7 +300,6 @@ export default {
 	}
 	#goods ul{
 		display: table;
-		
 	}
 	#goods ul li{
 		width: 3.68rem;

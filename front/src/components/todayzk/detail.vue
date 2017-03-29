@@ -219,7 +219,7 @@ export default {
 	background: #f70;
 	color: #fff;
 	width:0.91rem;
-	font-size: 0.19rem;
+	font-size: 0.21rem;
 	height: 0.35rem;
 	line-height: 0.35rem;
 	text-align: center;

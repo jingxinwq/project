@@ -35,22 +35,22 @@ const routes=[
 	component: Today,
 	redirect:'/today/todayzk',
 	children:[
-			{
-				path:'todayzk',
-				component:Todayzk,
-			},
-			{
-				path:'todayzk/detail/:Id&:goods_Id&:show_etime',
-				component:Detail1,
-				name: 'detail1'
-			},
-			{
-				path:'goodsDetail/:Id&:goods_Id',
-				component:GoodsDetail1,
-				name: 'goodsDetail1'				
-			}
-		
-		]
+		{
+			path:'todayzk',
+			component:Todayzk,
+		},
+		{
+			path:'todayzk/detail/:Id&:goods_Id&:show_etime',
+			component:Detail1,
+			name: 'detail1'
+		},
+		{
+			path:'goodsDetail/:Id&:goods_Id',
+			component:GoodsDetail1,
+			name: 'goodsDetail1'				
+		}
+	
+	]
 },
 {
 	path: '/zhifacang',
@@ -61,22 +61,22 @@ const routes=[
 	component: Quanqiugou,
 	redirect:'/quanqiugou/list',
 	children:[
-			{
-				path:'list',
-				component:List,
-			},
-			{
-				path:'detail/:Id',
-				component:Detail2,
-				name: 'detail2'
-			},
-			{
-				path:'goodsDetail',
-				component:GoodsDetail2,
-				name: 'goodsDetail2'				
-			}
-		
-		]
+		{
+			path:'list',
+			component:List,
+		},
+		{
+			path:'detail/:Id&:goods_Id&:show_etime',
+			component:Detail2,
+			name: 'detail2'
+		},
+		{
+			path:'goodsDetail',
+			component:GoodsDetail2,
+			name: 'goodsDetail2'				
+		}
+	
+	]
 },
 {
 	path:'/gouwuche',
@@ -87,22 +87,22 @@ const routes=[
 	component: Myjuanpi,
 	redirect:'/myjuanpi/user',
 	children:[
-			{
-				path:'user',
-				component:User,
-			},
-			{
-				path:'register',
-				component:Register,
-				name:'register'
-			},
-			{
-				path:'login',
-				component:Login,
-				name:'login'
-			}
-		
-		]
+		{
+			path:'user',
+			component:User,
+		},
+		{
+			path:'register',
+			component:Register,
+			name:'register'
+		},
+		{
+			path:'login',
+			component:Login,
+			name:'login'
+		}
+	
+	]
 },
 	// {path:"/*",redirect:"/today"}
 ]

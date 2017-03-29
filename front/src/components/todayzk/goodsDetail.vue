@@ -2,7 +2,6 @@
   <div id="goodsDetail">
 		<div id="item">
 			<div class="item-good">
-				
 
 				<div class="titleimg">
 					<div class="back" @click="back()">
@@ -13,6 +12,7 @@
 
 				<div class="normal">
 					<h1>{{goodsData.title}}</h1>
+					<button>加入购物车</button>
 					<div class="list-price">
 						<span class="price-1">
 							<span>{{goodsData.price1}}</span>
@@ -47,28 +47,33 @@
 
 			<div class="feature">
 				<a>
-					<div class="c1"><img src=""><span></span></div>
-					<div class="c1"><img src=""><span></span></div>	
-					<div class="c1"><img src=""><span></span></div>	
-					<div class="c1"><img src=""><span></span></div>		
+					<div class="c1"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAAH6ji2bAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTNBMjZCQjRFRTQ5MTFFNUIxNjhCMDc5RDAzRjg1MDMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTNBMjZCQjVFRTQ5MTFFNUIxNjhCMDc5RDAzRjg1MDMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxM0EyNkJCMkVFNDkxMUU1QjE2OEIwNzlEMDNGODUwMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxM0EyNkJCM0VFNDkxMUU1QjE2OEIwNzlEMDNGODUwMyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqCUSooAAAJgSURBVHjaYmAAgv9ufq8YUBjIACj4HyCAGKGMbUxQQU8Q7xmIBRBAMDVKSOxnYLVQzgKYBEAAwQxJA1IzgZiXcdemL2Dj0axLBtnCAeUwQsVngwSdoRwduJFAFYuRtDqAaIAAglnEBqR+AvEGII4AWvYTKOYFZG8F4iVAfizYNUC8ngEPADmQBeRkoA6Yya1AKh6IpYFYDyh+Gar2BSNQkgfI+AxTjMU0kBvXMCL7F0jNATGB+CUQSwDxW6ABIiB5gABCVggyeRU49BkYXgNxDVDRLJg8E1QRKDg+A/EUqBNkQRpAnoCGCMRKlOhDdZ8SLEoYwVGPwyNQxaCg284CdTy65HQg5QM0AOSECCB+zAL1ITxgQTEBxB5ARaJgKyGxJMoCDQYYAPHvwBRBNYOicjvIjW+AjBCg5AFc0QdKbHAOLJWgKXoGS0nIAQ4yWRgUr0AsDpVLAdo0FyQPEGCMWEwBRWUnVBMDUpQyIBkAAm+BuBxmEEoGQYrFGCB+DsRRuPyGlqiWAbEkPG1DIxCUZh5AXeRIyCAcBu+HuliBCZoAQYZ5E+EqkANagHgi3IsQPd5QM1YxQqPnBVBCEk0zyAtJQJwKxHeBeBoQZwAxKFKckDIdTD0oqCRYoFlDHCjADkpNSGpA4eMBxLeh/DdouRfZMHZohL0GGVgDLbFWAHEgklf+AqloKCYEVkAjuIYRLdeDnG0DNOwekRECKmiPQGManBaRkw0og8+FJh0GaNE3G4j3woIC6jVnaLgGQNWBMmEyUM0vrAkbqfiJgmoyAWJYZgSF9xmoZcvAhToaAAC4JALRc+Sl2QAAAABJRU5ErkJggg=="><span>24小时发货</span></div>
+					<div class="c1"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAAH6ji2bAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTNBMjZCQjRFRTQ5MTFFNUIxNjhCMDc5RDAzRjg1MDMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTNBMjZCQjVFRTQ5MTFFNUIxNjhCMDc5RDAzRjg1MDMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxM0EyNkJCMkVFNDkxMUU1QjE2OEIwNzlEMDNGODUwMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxM0EyNkJCM0VFNDkxMUU1QjE2OEIwNzlEMDNGODUwMyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqCUSooAAAJgSURBVHjaYmAAgv9ufq8YUBjIACj4HyCAGKGMbUxQQU8Q7xmIBRBAMDVKSOxnYLVQzgKYBEAAwQxJA1IzgZiXcdemL2Dj0axLBtnCAeUwQsVngwSdoRwduJFAFYuRtDqAaIAAglnEBqR+AvEGII4AWvYTKOYFZG8F4iVAfizYNUC8ngEPADmQBeRkoA6Yya1AKh6IpYFYDyh+Gar2BSNQkgfI+AxTjMU0kBvXMCL7F0jNATGB+CUQSwDxW6ABIiB5gABCVggyeRU49BkYXgNxDVDRLJg8E1QRKDg+A/EUqBNkQRpAnoCGCMRKlOhDdZ8SLEoYwVGPwyNQxaCg284CdTy65HQg5QM0AOSECCB+zAL1ITxgQTEBxB5ARaJgKyGxJMoCDQYYAPHvwBRBNYOicjvIjW+AjBCg5AFc0QdKbHAOLJWgKXoGS0nIAQ4yWRgUr0AsDpVLAdo0FyQPEGCMWEwBRWUnVBMDUpQyIBkAAm+BuBxmEEoGQYrFGCB+DsRRuPyGlqiWAbEkPG1DIxCUZh5AXeRIyCAcBu+HuliBCZoAQYZ5E+EqkANagHgi3IsQPd5QM1YxQqPnBVBCEk0zyAtJQJwKxHeBeBoQZwAxKFKckDIdTD0oqCRYoFlDHCjADkpNSGpA4eMBxLeh/DdouRfZMHZohL0GGVgDLbFWAHEgklf+AqloKCYEVkAjuIYRLdeDnG0DNOwekRECKmiPQGManBaRkw0og8+FJh0GaNE3G4j3woIC6jVnaLgGQNWBMmEyUM0vrAkbqfiJgmoyAWJYZgSF9xmoZcvAhToaAAC4JALRc+Sl2QAAAABJRU5ErkJggg=="><span>7天包退</span></div>	
+					<div class="c1"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAAH6ji2bAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTNBMjZCQjRFRTQ5MTFFNUIxNjhCMDc5RDAzRjg1MDMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTNBMjZCQjVFRTQ5MTFFNUIxNjhCMDc5RDAzRjg1MDMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxM0EyNkJCMkVFNDkxMUU1QjE2OEIwNzlEMDNGODUwMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxM0EyNkJCM0VFNDkxMUU1QjE2OEIwNzlEMDNGODUwMyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqCUSooAAAJgSURBVHjaYmAAgv9ufq8YUBjIACj4HyCAGKGMbUxQQU8Q7xmIBRBAMDVKSOxnYLVQzgKYBEAAwQxJA1IzgZiXcdemL2Dj0axLBtnCAeUwQsVngwSdoRwduJFAFYuRtDqAaIAAglnEBqR+AvEGII4AWvYTKOYFZG8F4iVAfizYNUC8ngEPADmQBeRkoA6Yya1AKh6IpYFYDyh+Gar2BSNQkgfI+AxTjMU0kBvXMCL7F0jNATGB+CUQSwDxW6ABIiB5gABCVggyeRU49BkYXgNxDVDRLJg8E1QRKDg+A/EUqBNkQRpAnoCGCMRKlOhDdZ8SLEoYwVGPwyNQxaCg284CdTy65HQg5QM0AOSECCB+zAL1ITxgQTEBxB5ARaJgKyGxJMoCDQYYAPHvwBRBNYOicjvIjW+AjBCg5AFc0QdKbHAOLJWgKXoGS0nIAQ4yWRgUr0AsDpVLAdo0FyQPEGCMWEwBRWUnVBMDUpQyIBkAAm+BuBxmEEoGQYrFGCB+DsRRuPyGlqiWAbEkPG1DIxCUZh5AXeRIyCAcBu+HuliBCZoAQYZ5E+EqkANagHgi3IsQPd5QM1YxQqPnBVBCEk0zyAtJQJwKxHeBeBoQZwAxKFKckDIdTD0oqCRYoFlDHCjADkpNSGpA4eMBxLeh/DdouRfZMHZohL0GGVgDLbFWAHEgklf+AqloKCYEVkAjuIYRLdeDnG0DNOwekRECKmiPQGManBaRkw0og8+FJh0GaNE3G4j3woIC6jVnaLgGQNWBMmEyUM0vrAkbqfiJgmoyAWJYZgSF9xmoZcvAhToaAAC4JALRc+Sl2QAAAABJRU5ErkJggg=="><span>售后补贴</span></div>
 				</a>
 			</div>
 			<div class="item-feature">
 				<div class="seller">
 					<div class="f1">
-						<img src="">
+						<img :src="goodsData.sellerImg">
 					</div>
 					<div class="f1 desc">
-						<div desc-title>生活仓库</div>
-						<span desc-deli>卷皮执法</span>
+						<div desc-title>{{goodsData.sellerTitle}}</div>
+						<span desc-deli>{{goodsData.sellerDeli}}</span>
 					</div>
 				</div>
 				<div class="com-list">
-					<ul style="list-style: none;">
+					<ul>
 						<li>
 							<div class="shop-info">
-								<span>发货地</span>
-								<strong>辽宁大连</strong>
+								<span class="leftinfo">发货地</span>
+								<span class="rightinfo">{{goodsData.shopInfo}}</span>
+							</div>
+						</li>
+						<li>
+							<div class="shop-info">
+								<span class="leftinfo">运费</span>
+								<span class="rightinfo">{{goodsData.shopInfo1}}</span>
 							</div>
 						</li>
 					</ul>
@@ -77,9 +82,21 @@
 			<div class="item-btn-box">
 				<div class="btn-box">
 					<a href="" class="btn">商家全部商品</a>
-					<a href="" class="btn">进入生活仓库</a>
 				</div>
 			</div>
+
+			<div class="goodsimgs">
+				<ul v-for="data in goodsimgsData">
+					<li>
+						<img :src="data">
+					</li>
+				</ul>		
+			</div>
+
+			<div class="pagebottom">
+				亲，已经到最底了~	
+			</div>
+
 		</div>
   </div>
 </template>
@@ -93,14 +110,16 @@ export default {
     return {
 		id:'',
 		goodsData:"",
+		goodsimgsData:""
     }
   },
   mounted(){
      axios.get('http://localhost:3000/goodsDetail/obj2',{params: {id: this.$route.params.goodsId}
 		}).then(response=>{
-			console.log(response)
+			// console.log(response)
 			this.goodsData = response.data;
-			console.log(this.goodsData)
+			this.goodsimgsData = response.data.moreImg
+			console.log(this.goodsimgsData)
 		})
 		.catch(function (error) {
 	    	console.log(error);
@@ -119,8 +138,18 @@ export default {
 		overflow: auto;
 		height: 12.53rem;
 	}
-	#item{
-		
+	button{
+		width:1.8rem;
+		height: 0.6rem;
+		line-height: 0.6rem;
+		text-align: center;
+		font-size: 0.3rem;
+		border:0;
+		border-radius: 0.07rem;
+		background: #ff464e;
+		color: #fff;
+		float: right;
+		margin-right: 1rem;
 	}	
 
 	#item .item-good .titleimg{
@@ -290,9 +319,8 @@ export default {
 		height: 0.87rem;
 	}
 	.feature a{
-		font-size: .14rem;
-		margin-left: .142rem;
-		line-height: .142rem;
+		margin-left: .2rem;
+		line-height: .2rem;
 		padding-bottom: .223rem;
 		padding-top: .223rem;
 		display: block;
@@ -305,13 +333,16 @@ export default {
 	}
 	.feature a .c1 img{
 		margin-right: .063rem;
-		width: .126rem;
+		width: .18rem;
+		line-height: .2rem;
 		float: left;
 	}
 	.feature a .c1 span{
 		color: #4a4a4a;
-		font-size: .14rem;
-		line-height: .153rem;
+		font-size: .2rem;
+		line-height: .19rem;
+		float: left;
+		margin-left: 0.03rem;
 	}
 	.item-feature{
 		margin-top: .128rem;
@@ -320,19 +351,34 @@ export default {
 		overflow: hidden;
 	}
 	.item-feature .seller{
+		font-size: 0.22rem;
+		height: 0.94rem;
 		margin-bottom: .026rem;
 	}
 	.item-feature .seller .f1{
+		font-size: 0.24rem;
 		float: left;
 	}	
 	.item-feature .seller .f1 img{
-		width:1.15rem;
-		border:1px solid #e7e7e7;
+		width:1.64rem;
+		border:1px solid #c6c6c6;
 	}
 	.item-feature .seller .desc{
-		font-size: .153rem;
-		margin-left: .063rem;
-		color: #4a4a4a;
+		margin-left: .2rem;
+	}
+	.item-feature .seller .desc div{
+		margin-top: 0.05rem;
+	}
+	.item-feature .seller .desc span{
+		font-size: 0.21rem;
+		width: 1.055rem;
+		height: 0.272rem;
+		margin-top: 0.1rem;
+		text-align: center;
+		line-height: 0.272rem;
+		color: #fff;
+		background: #f70;
+		display: block;
 	}
 	.item-feature .seller .desc .desc-title{
 		height:.332rem;
@@ -347,24 +393,28 @@ export default {
 		color: #fff;
 		display: inline-block;
 	}
+	.item-feature .com-list{
+		margin-top: 0.2rem;
+	}
 	.item-feature .com-list li{
-		padding-bottom: .128rem;
-		line-height: .166rem;
-		margin:0;
+		height: 0.261rem;
+		margin-bottom: 0.1rem;
+		/*padding-bottom: .128rem;*/
+		line-height: 0.261rem;
 	}
 	.item-feature .com-list li .shop-info{
 		font-size: .153rem;
 		line-height: 1.2;
 	}
-	.item-feature .com-list li .shop-info span{
-		width: 1.09rem;
+	.item-feature .com-list li .shop-info .leftinfo{
+		width: 1.55rem;
+		font-size: 0.24rem;
 		float: left;
 		color: #9b9b9b;
 	}
-	.item-feature .com-list li .shop-info strong{
-		width:70%;
+	.item-feature .com-list li .shop-info .rightinfo{
+		font-size: 0.24rem;
 		float: left;
-		font-weight: 400;
 		color: #6b6b6b;
 	}
 	.item-btn-box .btn-box{
@@ -373,13 +423,27 @@ export default {
 		text-align: center;
 	}
 	.item-btn-box .btn-box .btn{
-		margin-right: .204rem;
-		font-size: .153rem;
-		width: 1.33rem;
-		line-height: .36rem;
-		height: .36rem;
+		margin: 0 auto;
+		font-size: 0.22rem;
+		width: 1.9rem;
+		line-height: .52rem;
+		height: .52rem;
 		text-align: center;
 		border:1px solid #4a4a4a;
 		display: inline-block;
+	}
+	.goodsimgs {
+		margin-top: 0.15rem;
+	}
+	.goodsimgs img{
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+	.pagebottom{
+		text-align: center;
+		font-size: 0.26rem;
+		height: 1rem;
+		line-height: 1rem;
 	}
 </style>
