@@ -12,7 +12,7 @@
 
 				<div class="normal">
 					<h1>{{goodsData.title}}</h1>
-					<button>加入购物车</button>
+					<button  @click="addshopcar()">加入购物车</button>
 					<div class="list-price">
 						<span class="price-1">
 							<span>{{goodsData.price1}}</span>
@@ -104,6 +104,7 @@
 <script>
 import axios from "axios";
 import router from "../../routerConfig";
+import { MessageBox } from 'mint-ui';
 export default {
   name: 'goodsDetail',
   data () {
@@ -128,6 +129,20 @@ export default {
 	methods:{
 		back(){
 			router.go(-1)
+		},
+		addshopcar(){
+			 	if(Cookie.getCookie("nam")){
+					 // router.push({path:"/gouwuche"})
+					console.log(111)
+					              MessageBox.alert('成功添加到购物车').then(action => {
+                                   
+                  })
+				 	}else{
+                            router.push({path:"/myjuanpi/login"})
+                            console.log(222)
+
+				 	}
+
 		}
 	}
 }

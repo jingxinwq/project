@@ -76,8 +76,8 @@
              
 
                 <!--结算按钮 begin-->
-                <input type="hidden" name="totalPrice" id="totalPrice" value="">
-                <div class="bag-total" style="display:none;">
+              <!--   <input type="hidden" name="totalPrice" id="totalPrice" value=""> -->
+               <!--  <div class="bag-total" style="display:none;">
                     <div class="bag-money">
                         <p class="count">总金额<span class="p" id="myBagTotal">￥0.00</span>
                             <span class="t"></span>
@@ -85,22 +85,20 @@
                         </p>
                     </div>
                     <a href="javascript:;" class="go_pay fr" data-login="1">去结算</a>
-                </div>
+                </div> -->
                 <!--结算按钮 over-->
-                <div style="display: none; z-index: 201;" class="alert_fullbg"></div>
+               <!--  <div style="display: none; z-index: 201;" class="alert_fullbg"></div>
                 <div class="normal_alert_bg" style="display:none;">
-                </div>
-                <div class="normal_loading" id="loading-alert">
+                </div> -->
+               <!--  <div class="normal_loading" id="loading-alert">
                     <div class="box other">
                     
                     </div>
-                </div>
-                <div style="display:none;" class="temai_tips">
-                </div>
+                </div> -->
+               <!--  <div style="display:none;" class="temai_tips">
+                </div> -->
             </section>
     </div>
-
-
     </div>
 </body>
 </template>

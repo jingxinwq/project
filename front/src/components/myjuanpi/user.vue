@@ -13,7 +13,7 @@
 			 <a  @click="changepage1()">注册</a> 
 
 		 </div>
-		 <div v-else class="comeback">
+		 <div v-else="" class="comeback">
 		 <p  class="comeback">欢迎{{name}}回来</p>
 		 <p  @click="changinfo" >我的资料、收货地址</p>
 		 </div>
@@ -67,7 +67,6 @@
 						<div class="arrow"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8"></div>
 					</a>
 				</div>
-<mt-button @click.native="handleClick" size="large">点击触发 handleClick</mt-button>
 </div>
 </div>
 </template>
@@ -116,18 +115,6 @@ import router from "../../routerConfig";
 			},
 			changinfo(){
 				router.push({ name: 'userinfo'})
-
-			},
-			handleClick(){
-				 	if(Cookie.getCookie("nam")){
-				 		
-					 // router.push({path:"/gouwuche"})
-					console.log(111)
-				 	}else{
-                            router.push({path:"/myjuanpi/login"})
-                            console.log(222)
-
-				 	}
 
 			}
 

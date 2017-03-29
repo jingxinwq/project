@@ -31,7 +31,7 @@ const Userinfo = resolve => require(["./components/myjuanpi/userinfo.vue"], reso
 const Aboutme = resolve => require(["./components/myjuanpi/aboutme.vue"], resolve)
 const Callcenter = resolve => require(["./components/myjuanpi/callcenter.vue"], resolve)
 const Mycollect = resolve => require(["./components/myjuanpi/mycollect.vue"], resolve)
-const Order = resolve => require(["./components/myjuanpi/order.vue"], resolve)‘
+const Order = resolve => require(["./components/myjuanpi/order.vue"], resolve)
 
 Vue.use(VueRouter)
 const routes=[
