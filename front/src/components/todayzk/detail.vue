@@ -38,7 +38,7 @@
 		</div>
 		<div class="time">
 			<div class="endtimetitle">距离结束还剩</div>
-			<div>{{day}}|||||{{second}}</div>
+			<div class="endtimeshow">{{day}}天</div>
 		</div>
 
 		<div id="main">
@@ -126,7 +126,7 @@ export default {
 			var now = parseInt(date.toString().substr(0,10));
 			var endtime = this.$route.params.show_etime;
 			var end = endtime - now;
-			var days = Math.abs(end/(60*60*24));
+			var days = Math.floor(end/(60*60*24));
   			return days;
   		},
 
@@ -254,16 +254,21 @@ export default {
 }
 .time{
 	width: 100%;
-	height: 0.9rem;
-	background: #f7f7f7;
-
+	height: 100%;
+	background: #f2f2f2;
+	padding: 0.2rem 0 0.1rem 0;
 }
 .time .endtimetitle{
 	text-align: center;
 	font-size: 0.2rem;
 	color: #bbb;
 }
-
+.time .endtimeshow{
+	text-align: center;
+	font-size: 0.3rem;
+	color: #ff464e;
+	font-weight: bold;
+}
 /*03.28 09:44fixed*/
 #main{
 	width: 100%;
