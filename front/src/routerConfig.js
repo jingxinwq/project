@@ -12,9 +12,13 @@ const Today = resolve => require(["./components/todayzk/today.vue"], resolve)
 const Todayzk = resolve => require(["./components/todayzk/todayzk.vue"], resolve)
 const Quanqiugou = resolve => require(["./components/quanqiugou/quanqiugou.vue"], resolve)
 const List = resolve => require(["./components/quanqiugou/list.vue"], resolve)
+
 const Detail1 = resolve => require(["./components/todayzk/detail.vue"], resolve)
 const Detail2 = resolve => require(["./components/quanqiugou/detail.vue"], resolve)
-const GoodsDetail = resolve => require(["./components/quanqiugou/goodsDetail.vue"], resolve)
+
+const GoodsDetail1 = resolve => require(["./components/todayzk/goodsDetail.vue"], resolve)
+const GoodsDetail2 = resolve => require(["./components/quanqiugou/goodsDetail.vue"], resolve)
+
 const Gouwuche = resolve => require(["./components/gouwuche/gouwuche.vue"], resolve)
 
 const Myjuanpi = resolve => require(["./components/myjuanpi/myjuanpi.vue"], resolve)
@@ -36,9 +40,14 @@ const routes=[
 				component:Todayzk,
 			},
 			{
-				path:'detail/:Id',
+				path:'todayzk/detail/:Id&:goods_Id&:show_etime',
 				component:Detail1,
 				name: 'detail1'
+			},
+			{
+				path:'goodsDetail/:Id&:goods_Id',
+				component:GoodsDetail1,
+				name: 'goodsDetail1'				
 			}
 		
 		]
@@ -63,8 +72,8 @@ const routes=[
 			},
 			{
 				path:'goodsDetail',
-				component:GoodsDetail,
-				name: 'goodsDetail'				
+				component:GoodsDetail2,
+				name: 'goodsDetail2'				
 			}
 		
 		]

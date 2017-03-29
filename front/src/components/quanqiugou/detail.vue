@@ -117,7 +117,7 @@ export default {
 	methods:{
 		changepage(id){
 	  		console.log(id);
-	  		router.push({ name: 'goodsDetail', params: { goodsId: id}})
+	  		router.push({ name: 'goodsDetail2', params: { goodsId: id}})
 	  	}
   	},
 	computed:{
