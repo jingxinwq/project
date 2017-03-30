@@ -10,7 +10,7 @@
 		<nav>
 	    	<mt-swipe :auto="2000">
 			  <mt-swipe-item v-for="data in swipe">
-			  	<img :src="data.pic"/>
+			  	<img :src="'http:'data.pic"/>
 			  </mt-swipe-item>
 
 			</mt-swipe>
@@ -20,12 +20,12 @@
 			<div class="qq">
 				<div class="q1">
 					<div class="q11" v-for='data in nav'>
-								<img :src="data.data[0].child[0].pic" />
+								<img :src="'http:'data.data[0].child[0].pic" />
 					</div>				
 				</div>
 				<div class="q2">
 					<div class="q22" v-for='data in nav'>						
-						<img :src="data.data[0].child[1].pic" />
+						<img :src="'http:'data.data[0].child[1].pic" />
 					</div>
 				</div>
 			</div>
@@ -42,12 +42,12 @@
  							infinite-scroll-disabled="loading"
  							infinite-scroll-distance="5">
 				<li class="e1" v-for='data in active' v-show="data.shop_cover!=undefined">
-					<img :src='data.shop_cover' @click="changepage(data.shop_id,data.brand_id,data.goods_id,data.show_etime)"/>
+					<img :src="'http:'data.shop_cover" @click="changepage(data.shop_id,data.brand_id,data.goods_id,data.show_etime)"/>
 					<ul class="e11">
 						<li class="e111" v-for='data in data.shop_goods'>
 							<dl>
 								<dt>
-									<img :src='data.pic_url' />
+									<img :src="'http:'data.pic_url" />
 								</dt>
 								<dd>{{"￥"+data.cprice}}</dd>
 								<dd>{{data.title}}</dd>

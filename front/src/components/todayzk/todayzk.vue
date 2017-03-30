@@ -8,7 +8,10 @@
 
 	      <div id="header">
 	        <div class="inner">
-	          <img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/head/top-logo.png?67655ac3"/>
+	          <img class="titleimg" src="http://jp.juancdn.com/jpwebapp_v1/images_v1/head/top-logo.png?67655ac3"/>
+	          <span class="search" @click="handleSearch()">
+	          	<img src="https://jp.juancdn.com/jpwebapp_v1/images_v1/head/btn-sign.png?20160812" /> 
+	          </span>
 	        </div>
 	      </div>
 	      
@@ -148,6 +151,9 @@ export default {
   		console.log(show_etime);
   			router.push({ name: 'detail1', params: { Id: id ,brand_Id:brand_id,goods_Id:goods_id,show_etime:show_etime}})
   	},
+  	handleSearch(){
+  		router.push({ name: 'detail1'})
+  	},
 
     loadTop() {
       //下拉刷新
@@ -206,13 +212,26 @@ export default {
 		text-align: center;
 		height: 0.8rem;
 		overflow: hidden;
+		position: relative;
 	}
-	#header .inner img{
+	#header .inner .titleimg{
 		vertical-align: middle;
 		height: 0.44rem;
 		background: #fff;
 		margin: 0.2rem auto;
 		display: block;
+	}
+	#header .inner .search{
+		width: 0.44rem;
+		height: 0.44rem;
+		position: absolute;
+		right: 0.18rem;
+		top: 0.2rem;
+		display: block;
+	}
+	#header .inner .search img{
+		width: 0.44rem;
+		height: 0.44rem;
 	}
 	#nav{
 		width:100%;
@@ -224,6 +243,7 @@ export default {
 	  	white-space:nowrap;
 	  	overflow-x:auto;
 	  	background: #fff;
+	  	border-top: 0.02rem solid #eee
 	}
 	#nav li{
 		padding:0 0.12rem;
