@@ -5,7 +5,7 @@
 			 <a id="t-find" class="btnBack" href="javascript:window.history.go(-1)">
 			 <img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/arrow_white.png?5123297e"></a> 
 			 <span id="t-index">个人中心</span> 
-			  <span  @click="delcookie()" class="tuichu">退出</span>
+			 <span  @click="delcookie()" class="tuichu">退出</span>
 		 </div>
 		 <div class="user-login" v-if="show">
 			 <a  @click="changepage2()">登录</a>
@@ -123,6 +123,7 @@ import router from "../../routerConfig";
   	}
 </script>
 <style scoped>
+
 *{
 	font-size: 0.3rem;
 }
@@ -130,15 +131,37 @@ import router from "../../routerConfig";
 	height: 100%;
 }
 #head{
-	height: 2.5rem;
+	height: 2.64rem;
 	width:100%;
-	background: red;
+	background:linear-gradient(150deg,#ff5a61 40%,#fd631c);
 	color:white;
 	font-size: 0.5rem
 }
+#head .userTop{
+	height: .88rem;
+	line-height: .88rem;
+
+}
+#t-find{
+	display: inline-block;
+	width:.88rem;
+	height:.88rem;
+	line-height: 0.88rem;
+	padding:0 .2rem;
+	float: left;
+}
 #t-index{
-	margin-left:2.5rem;
-	font-size: 0.4rem;
+	display: block;
+	width: 1.8rem;
+	height: .88rem;
+	line-height: .88rem;
+	font-size: .36rem;
+	text-align:center;
+	margin:0 auto;
+}
+.tuichu{
+	float: right;
+	display: inline-block;
 }
 .user-login{
 text-align: center;
@@ -234,9 +257,6 @@ color: white;
 	margin:0.2rem;
 
 }
-.tuichu{
-	font-size: 0.4rem;
-	float:right;
-	margin-left:0.4rem;
-}
+
+
 </style>

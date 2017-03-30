@@ -40,7 +40,7 @@
 import router from "../../routerConfig";
 import axios from "axios";
 import VueResouse from 'vue-resource';
-
+import Url from '../../address';
 
 export default {
   name: 'searchresult',
@@ -48,15 +48,17 @@ export default {
     return {
       
       msg:"",
-      goodsData:""
+      goodsData:"",
+      url:""
   
     }
   },
   mounted(){
     //ajax 请求
+    this.url = Url.url;
 
     //获取商品
-   axios.get('http://localhost:3000/homeapi/search',
+   axios.get(`${this.url}/homeapi/search`,
       {params: {msg: this.$route.params.msg}
 
     }).then(response=>{

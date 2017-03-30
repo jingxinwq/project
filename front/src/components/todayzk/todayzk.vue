@@ -5,7 +5,7 @@
 	        <span v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">下拉刷新</span>
 	        <span v-show="topStatus === 'loading'">正在刷新数据...</span>
 	      </div>
-
+		  
 	      <div id="header">
 	        <div class="inner">
 	          <img class="titleimg" src="http://jp.juancdn.com/jpwebapp_v1/images_v1/head/top-logo.png?67655ac3"/>
@@ -82,6 +82,7 @@ import router from "../../routerConfig";
 import axios from "axios";
 import Vue from 'vue'
 import VueResouse from 'vue-resource';
+import Url from '../../address';
 
 import { InfiniteScroll } from 'mint-ui';
 
@@ -105,14 +106,16 @@ export default {
 	    topStatus:"",
 	    loadmoreData:1,
 	    allLoaded:false,
-	    loading:false
+	    loading:false,
+	    url:""
     }
   },
   mounted(){
   	//ajax 请求
+  	this.url = Url.url; //服务器
 
   	//获取导航
-  	axios.get("http://localhost:3000/homeapi/select1_1")
+  	axios.get(`${this.url}/homeapi/select1_1`)
       .then( response=>{
           for(var i=0;i<response.data.menu_list.length;i++){
            	for(var j=0;j<response.data.menu_list[i].subtab.length;j++){
@@ -226,7 +229,7 @@ export default {
 		height: 0.44rem;
 		position: absolute;
 		right: 0.18rem;
-		top: 0.2rem;
+		top: 0rem;
 		display: block;
 	}
 	#header .inner .search img{

@@ -27,7 +27,7 @@
 
         <div id="categoryright">
           <ul>
-            <li v-for="(data,index) in searchlistData[currentIndex]" @click="currentIndex=index">
+            <li v-for="data in searchlistData[currentIndex]" >
               <img :src="'http://s2.juancdn.com'+data.icon"/>
               <span>{{data.name}}</span>
               <div></div>
@@ -52,6 +52,7 @@ export default {
     return {
     	searchGoodsData:[],
       currentIndex:0,
+      listIndex:0,
       searchlistData:[],
       msg:""
 	

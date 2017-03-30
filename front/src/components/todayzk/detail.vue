@@ -66,6 +66,8 @@
 <script>
 import axios from "axios";
 import router from "../../routerConfig";
+import Url from '../../address';
+
 export default {
   name: 'detail',
   data () {
@@ -74,12 +76,13 @@ export default {
 		actinfo:"",
 		mzinfo:"",
 		shopData:"",
-		endtime:""
+		endtime:"",
+      	url:""
     }
   },
   mounted(){
-
-  	axios.get('http://localhost:3000/homeapi/goodsShop_1',
+  	this.url = Url.url;
+  	axios.get(`${this.url}/homeapi/goodsShop_1`,
   		{params: {id: this.$route.params.Id,brand_id:this.$route.params.brand_Id}
 
 		}).then(response=>{
@@ -94,7 +97,7 @@ export default {
 	    console.log(error);
 	  });  
 
-	axios.get('http://localhost:3000/homeapi/saleInfo',
+	axios.get(`${this.url}/homeapi/saleInfo`,
   		{params: {id: this.$route.params.Id,goods_id: this.$route.params.goods_Id}
 
 		}).then(response=>{
@@ -107,7 +110,7 @@ export default {
 	    console.log(error);
 	  });  
 
-	axios.get('http://localhost:3000/restaurantapi/obj1',{params: {id: this.$route.params.Id,
+	axios.get(`${this.url}/restaurantapi/obj1`,{params: {id: this.$route.params.Id,
 		id1: this.$route.params.Id1}
 			}).then(response=>{
 			// console.log(response)

@@ -105,17 +105,21 @@
 import axios from "axios";
 import router from "../../routerConfig";
 import { MessageBox } from 'mint-ui';
+import Url from '../../address';
+
 export default {
   name: 'goodsDetail',
   data () {
     return {
 		id:'',
 		goodsData:"",
-		goodsimgsData:""
+		goodsimgsData:"",
+      	url:""
     }
   },
   mounted(){
-     axios.get('http://localhost:3000/goodsDetail/obj2',{params: {id: this.$route.params.goodsId}
+  	 this.url = Url.url;
+     axios.get(`${this.url}/goodsDetail/obj2`,{params: {id: this.$route.params.goodsId}
 		}).then(response=>{
 			// console.log(response)
 			this.goodsData = response.data;
