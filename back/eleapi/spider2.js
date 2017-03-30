@@ -41,7 +41,7 @@ function ser(html){
 
     var sellerImg;
     var sellerTitle;
-     var sellerDeli ;
+    var sellerDeli;
     var shopInfo;
     var shopInfo1; 
     var moreImg=[]

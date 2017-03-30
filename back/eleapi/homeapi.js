@@ -64,4 +64,14 @@ router.get("/saleInfo",function(req,res,next){
     });
 })
 
+router.get("/search",function(req,res,next){
+    var msg = req.query.msg;
+    // URLDecoder.decode(msg , "utf-8")
+    console.log(msg)
+    spider("/search?keyword="+encodeURIComponent(msg)+"&&user_groupids=p8_c3_a1_l4_222&page=1&is_ajax=1&order=&sort=&isstock=0",function (result) {
+        
+        res.send(result); // 如果渲染模板 res.render("")
+    });
+})
+
 module.exports = router;

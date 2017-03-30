@@ -152,7 +152,7 @@ export default {
   			router.push({ name: 'detail1', params: { Id: id ,brand_Id:brand_id,goods_Id:goods_id,show_etime:show_etime}})
   	},
   	handleSearch(){
-  		router.push({ name: 'detail1'})
+  		router.push({ name: 'search'})
   	},
 
     loadTop() {

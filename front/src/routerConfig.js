@@ -32,6 +32,9 @@ import Todayzk from "./components/todayzk/todayzk.vue"
 import Quanqiugou from"./components/quanqiugou/quanqiugou.vue"
 import List from"./components/quanqiugou/list.vue"
 
+import Search from"./components/todayzk/search.vue"
+import Searchresult from"./components/todayzk/searchresult.vue"
+
 import Detail1 from"./components/todayzk/detail.vue"
 import Detail2 from"./components/quanqiugou/detail.vue"
 
@@ -62,18 +65,33 @@ const routes=[
 		{
 			path:'todayzk',
 			component:Todayzk,
+			name: 'todayzk',
+			meta: { requiresAuth: true }
 		},
 		{
-			path:'todayzk/detail/:Id&:goods_Id&:show_etime',
+			path:'detail/:Id&:goods_Id&:show_etime',
 			component:Detail1,
-			name: 'detail1'
+			name: 'detail1',
+			meta: { requiresAuth: true }	
 		},
 		{
-			path:'goodsDetail/:Id&:goods_Id',
+			path:'goodsDetail/goodsid_:goods_Id',
 			component:GoodsDetail1,
-			name: 'goodsDetail1'				
+			name: 'goodsDetail1',
+			meta: { requiresAuth: true }					
+		},
+		{
+			path:'search',
+			component:Search,
+			name: 'search',
+			meta: { requiresAuth: true }				
+		},
+		{
+			path:'searchresult/:msg',
+			component:Searchresult,
+			name: 'searchresult',
+			meta: { requiresAuth: true }				
 		}
-	
 	]
 },
 {

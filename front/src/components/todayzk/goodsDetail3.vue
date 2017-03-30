@@ -106,7 +106,7 @@ import axios from "axios";
 import router from "../../routerConfig";
 import { MessageBox } from 'mint-ui';
 export default {
-  name: 'goodsDetail',
+  name: 'goodsDetail3',
   data () {
     return {
 		id:'',
@@ -115,11 +115,12 @@ export default {
     }
   },
   mounted(){
-     axios.get('http://localhost:3000/goodsDetail/obj2',{params: {id: this.$route.params.goodsId}
+     axios.get('http://localhost:3000/goodsDetail/obj2',{params: {id: this.$route.params.goodsId3}
 		}).then(response=>{
 			// console.log(response)
 			this.goodsData = response.data;
 			this.goodsimgsData = response.data.moreImg
+			console.log(this.goodsimgsData)
 		})
 		.catch(function (error) {
 	    	console.log(error);

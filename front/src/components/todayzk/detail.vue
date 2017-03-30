@@ -88,7 +88,6 @@ export default {
 				response.data.data[i].targetUrl = response.data.data[i].targetUrl.split("//m.juanpi.com")[1];
 			}
 				this.list1=response.data.data
-				console.log(this.list1)
 
 		})
 		.catch(function (error) {
@@ -284,7 +283,7 @@ export default {
 /*03.28 09:44fixed*/
 #main{
 	width: 100%;
-		background: #fff;
+	background: #fff;
 }
 #main ul{
 	/*display: table;*/

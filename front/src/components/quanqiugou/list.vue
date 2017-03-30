@@ -3,14 +3,15 @@
 		<header>
 			<div class="ha">
 				<span class="ha1">全球购</span>
-				<span class="ha2">
+				<span class="search">
+					<img src="https://jp.juancdn.com/jpwebapp_v1/images_v1/head/btn-sign.png?20160812" /> 
 				</span>
 			</div>
 		</header>
 		<nav>
 	    	<mt-swipe :auto="2000">
 			  <mt-swipe-item v-for="data in swipe">
-			  	<img :src="'http:'data.pic"/>
+			  	<img :src="'http:'+data.pic"/>
 			  </mt-swipe-item>
 
 			</mt-swipe>
@@ -20,12 +21,12 @@
 			<div class="qq">
 				<div class="q1">
 					<div class="q11" v-for='data in nav'>
-								<img :src="'http:'data.data[0].child[0].pic" />
+								<img :src="'http:'+data.data[0].child[0].pic" />
 					</div>				
 				</div>
 				<div class="q2">
 					<div class="q22" v-for='data in nav'>						
-						<img :src="'http:'data.data[0].child[1].pic" />
+						<img :src="'http:'+data.data[0].child[1].pic" />
 					</div>
 				</div>
 			</div>
@@ -42,12 +43,12 @@
  							infinite-scroll-disabled="loading"
  							infinite-scroll-distance="5">
 				<li class="e1" v-for='data in active' v-show="data.shop_cover!=undefined">
-					<img :src="'http:'data.shop_cover" @click="changepage(data.shop_id,data.brand_id,data.goods_id,data.show_etime)"/>
+					<img :src="'http:'+data.shop_cover" @click="changepage(data.shop_id,data.brand_id,data.goods_id,data.show_etime)"/>
 					<ul class="e11">
 						<li class="e111" v-for='data in data.shop_goods'>
 							<dl>
 								<dt>
-									<img :src="'http:'data.pic_url" />
+									<img :src="'http:'+data.pic_url" />
 								</dt>
 								<dd>{{"￥"+data.cprice}}</dd>
 								<dd>{{data.title}}</dd>
@@ -70,15 +71,13 @@ export default {
   name: 'list',
   data () {
     return {
-			swipe:[],
-			nav:[],
-			list1:[],
-			list2:[],
-			active:[],    	
-			pageIndex:1,
+		swipe:[],
+		nav:[],
+		list1:[],
+		list2:[],
+		active:[],    	
+		pageIndex:1,
     	loading:false
-			
-			
     }
   },
   
@@ -181,16 +180,18 @@ header .ha .ha1{
     overflow: hidden;
     white-space: nowrap;
 }
-header .ha .ha2{
-	display: block;
-	width: 0.48rem;
-	height: 0.48rem;
-	vertical-align: top;
-	background: url(../../assets/btn-sign.png) no-repeat scroll 0 0;
-	position: absolute;
-	left: 90%;
-	top:.2rem;
-}
+.search{
+		width: 0.44rem;
+		height: 0.44rem;
+		position: absolute;
+		right: 0.18rem;
+		top: 0.2rem;
+		display: block;
+	}
+.search img{
+		width: 0.44rem;
+		height: 0.44rem;
+	}
 nav{
     max-width: 16rem;
     height: 2.96rem;
