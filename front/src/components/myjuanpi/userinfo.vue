@@ -18,32 +18,27 @@
 						    </div>
 						</div>
 					</li>
-					<li>
-						<p id="change_name">
+					<li class="usernameli">
+						<p class="change_name">
 							<span class="fl">用户名</span>
+							<img class="arrow" src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8">
+							<span class="fr">{{name}}</span>
+						</p>
+					</li>
+
+					<li class="usernameli">
+						<p class="change_name">
+							<span class="fl">收货地址</span>
 							<img class="arrow" src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8">
 							<span class="fr">{{name}}</span>
 						</p>
 					</li>
 				</ul>
 				<div class="gray-line"></div>
-				<ul>
-					<li>
-						<p href="//m.juanpi.com/address">
-							<span class="fl">收货地址</span>
-							<img class="arrow" src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8">
-						</p>
-					</li>
-				</ul>
-				<div class="gray-line"></div>
-				<ul>
-					<li>
-					</li>
-											<li>
-						</li>
-					
-				</ul>
-							</div>
+
+
+				
+			</div>
 		</div>
 		<!-- 加入购物车快捷入口 -->
 	</div>
@@ -94,9 +89,31 @@ body{
 	}
 	#main{
 		font-size: 0.3rem;
+
+	}
+
+	.fixtop{
+	height: .88rem;
+	line-height: .88rem;
+	}
+	#t-find{
+		float: left;
+
+	}
+	#t-find img{
+		display: block;
+		margin: .15rem auto;
 	}
 	#t-index{
-		margin-left: 2.4rem;
+	display: block;
+	width: 1.8rem;
+	height: .88rem;
+	line-height: .88rem;
+	font-size: .36rem;
+	text-align:center;
+	margin:0 auto;
+	padding: 0 .2rem;
+
 	}
 	#head{
 		background: white;
@@ -107,9 +124,24 @@ body{
 		line-height:1.5rem;
 	background: white;
 	border-top: 2px solid #ccc;
+	font-size: .35rem;
+	padding: 0 .2rem;
+	overflow: hidden;
 	}
 	.bind_phone{
 		font-size: 0.3rem;
+
+	}
+	.fr img:nth-child(1){
+		display: inline-block;
+		margin-top: .25rem;
+
+	}
+	.fr img:nth-child(2){
+		display: inline-block;
+		margin-top: .1rem;
+		float: right;
+		margin-top:.6rem;
 	}
 	.imgsize{
 		display: inline-block;
@@ -119,18 +151,33 @@ body{
 	}
 	.arrow{
 		display: inline-block;
-	}
-	.change_name{
-		margin-top: 0.2rem;
-	}
-	.bind_phone ul li{
-		margin-top: 0.3rem
-
-	}
-	.gray-line{
-background: white;
+		float: right;
 	}
 	#change_name{
+		margin-top: 0.2rem;
+		height:.6rem; 
+		line-height: .6rem;
+	}
+	.bind_phone ul li{
+		margin-top: 0.2rem;
+
+	}
+	.bind_phone ul .usernameli{
+		height: 1rem;
+		
+	}
+	.bind_phone ul .usernameli .change_name{
+		height: 1rem;
+		line-height: 1rem;
+		padding: 0 0.2rem;
+	}
+	.bind_phone ul .usernameli .change_name img{
+		margin-top: 0.3rem;
+	}
+	.gray-line{
+		background: white;
+	}
+	.change_name{
 		background: white;
 	}
 </style>

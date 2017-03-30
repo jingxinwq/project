@@ -23,8 +23,8 @@
 <div id="bgc1">
 	<a href="//m.juanpi.com/order" class="myorder-enter">
 					<span class="mydingdan">我的订单</span>
-					<div class="arrow"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8">
-					<span class="tipsInfo">查看全部订单</span>
+					<div class="arrow">
+						<span class="tipsInfo">查看全部订单</span>
 					</div>
 				</a>
 
@@ -123,7 +123,6 @@ import router from "../../routerConfig";
   	}
 </script>
 <style scoped>
-
 *{
 	font-size: 0.3rem;
 }
@@ -140,7 +139,6 @@ import router from "../../routerConfig";
 #head .userTop{
 	height: .88rem;
 	line-height: .88rem;
-
 }
 #t-find{
 	display: inline-block;
@@ -149,6 +147,12 @@ import router from "../../routerConfig";
 	line-height: 0.88rem;
 	padding:0 .2rem;
 	float: left;
+}
+#t-find img{
+	display: block;
+	margin-top: .18rem;
+	width: .5rem;
+	height: .5rem;
 }
 #t-index{
 	display: block;
@@ -161,24 +165,28 @@ import router from "../../routerConfig";
 }
 .tuichu{
 	float: right;
-	display: inline-block;
+	display: inline;
+	width: .88rem;
+	height: .88rem;
+	line-height: .88rem;
+	position: absolute;
+	top:0;
+	right: .1rem;
 }
 .user-login{
-text-align: center;
-
+	text-align: center;
 }
 .user-login a{
-display: inline-block;
-margin:0.6rem;
-color:white;
+	display: inline-block;
+	margin:0.6rem;
+	color:white;
 }
 .user-login span{
-color: white;
+	color: white;
 }
 .userBox a{
 	text-decoration: none;
 	background: white;
-
 }
 .userBox span{
 	color:black;
@@ -188,7 +196,8 @@ color: white;
 	display: block;
 	height:0.9rem;
 	line-height: 0.9rem;
-	padding-bottom: 0.5rem
+	padding-bottom: 0.5rem;
+	padding: 0 0.3rem;
 }
 
 .bgc1{
@@ -197,11 +206,13 @@ color: white;
 	width: 100%;
 }
 .mydingdan{
-
+	
+	font-size:0.28rem;
 	float:left;
 	display: inline-block;
 }
 .tipsInfo{
+	font-size:0.28rem;
 	float:right;
 	display: inline-block;
 }
@@ -210,16 +221,24 @@ color: white;
 	display: flex;
 	text-align: center;
 	font-size: 0.5rem;
+	height: 1rem;
+	
+}
+.userItdiv span{
+	font-size:0.28rem;
 }
 .userItdiv a{
 	flex:1;
 }
 
 .userItdivs{
-	margin-top: 0.3rem
+	margin-top: 0.1rem;
+	padding: 0 0.2rem;
+	background: #fff;
 }
 .userItdivs a{
 	display: flex;
+	padding: 0.2rem 0;
 }
 .userItdivs a .icon {
 	flex:1;
@@ -231,14 +250,12 @@ color: white;
 	flex:8;
 }
 
-
 #foot{
     margin-top:0.4rem; 
     background: white;
 }
 .foot-nav{
     text-align: center;
-
 }
 .foot-nav a{
     margin-left:0.4rem;
@@ -255,8 +272,5 @@ color: white;
 .comeback{
 	font-size: 0.4rem;
 	margin:0.2rem;
-
 }
-
-
 </style>
