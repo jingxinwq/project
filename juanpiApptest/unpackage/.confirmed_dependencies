@@ -3,7 +3,8 @@
 		"resources": [
 			"js/mui.min.js",
 			"dist/build.js",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"dist/build.js.map"
 		]
 	}
 }

@@ -196,7 +196,8 @@
 				"resources": [
 					"js/mui.min.js",
 					"dist/build.js",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"dist/build.js.map"
 				],
 				"refer": [],
 				"priority": 0
@@ -205,7 +206,6 @@
 		"idle": {
 			"resources": [
 				"fonts/mui.ttf",
-				"dist/build.js.map",
 				"js/mui.js",
 				"css/mui.css"
 			]

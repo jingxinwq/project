@@ -12,7 +12,7 @@
                 </header>
                     <div class=" spcar" >
                             <div class="empty" v-if="show">
-                                <img src="//jp.juancdn.com/jpwebapp_v1/images_v1/shopping/empty-cart.png?6652b5eb">
+                                <img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/shopping/empty-cart.png?6652b5eb">
                                 <p class="empty-tips">购物车还是空荡荡的</p>
                                 <p class="empty-buy-tips">快去挑选商品吧</p>
                                 <p  class="go-buy"  @click="gototodayshop">今日特卖</p>
@@ -63,7 +63,8 @@ import Url from '../../address2';
                  show:true ,
                     goodsData:"",
                     goodsimgsData:"",
-                    url:""
+                    url:"",
+                    datalist:""
 
       
 
@@ -78,10 +79,10 @@ import Url from '../../address2';
                       
                 }).then(res=>{
                     var arr=[]
-                    // this.datalist=JSON.parse(res)
+                       this.datalist=JSON.parse(res);
                      // console.log(res)
                      // console.log(JSON.parse(res))
-                    for(var i=0;i<JSON.parse(res).length;i++){
+                    for(var i=0;i<this.datalist.length;i++){
                         arr.push(JSON.parse(res)[i])
                     }
                    console.log(arr)
@@ -112,12 +113,12 @@ import Url from '../../address2';
             },
             delnow(){
                  this.url = Url.url;
-                    $.post(`${this.url}/mysite---2/project/php/del.php`,{
+                    $.post(`${this.url}/php/del.php`,{
                       title:this.datalist[0].title
                        
                 }).then(res=>{
                    console.log(res)     
-        $.post(`${this.url}/mysite---2/project/php/getShopcar.php`,{
+        $.post(`${this.url}/php/getShopcar.php`,{
                         username:Cookie.localStorage.getItem("nam")
                       
                 }).then(res=>{
