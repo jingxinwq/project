@@ -1,11 +1,11 @@
 <template>
 <div id="login">
-	<div class="fixtop">
-						<a id="t-find" href="javascript:history.go(-1);" ><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/arrow_white.png?5123297e"></a>
-						<span id="t-index">登录</span>
-						<span id="t-user" class="free-reg" rel="nofollow" target="_parent"  @click="changenow">注册</span>
-					</div>  
-		<div id="inpall">
+  <div class="fixtop">
+            <a id="t-find" href="javascript:history.go(-1);" ><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/arrow_white.png?5123297e"></a>
+            <span id="t-index">登录</span>
+            <span id="t-user" class="free-reg" rel="nofollow" target="_parent"  @click="changenow">注册</span>
+          </div>  
+    <div id="inpall">
         <span>用户名：<input type="text" id="name"  v-model="name"></span>
         <br>
         <span>密<span id="space"></span>码：<input type="text" id="password" v-model="password"></span>
@@ -19,24 +19,28 @@
 import $ from "jquery";
      import router from "../../routerConfig"
      import { MessageBox } from 'mint-ui';
-		export default {
+     import Url from '../../address2';
+
+    export default {
      data(){
             return{
               
                 name:"",
-                password:""
+                password:"",
+                url:""
             }
         },
   mounted(){
 },
     methods:{
-     		changenow(){
-     			  router.push({path:"/myjuanpi/register"})
-     		},
+        changenow(){
+            router.push({path:"/myjuanpi/register"})
+        },
 
            loginnow() {
+              this.url = Url.url;
                  $.ajax({
-                    url:"http://localhost/mysite---1/project/php/login.php",
+                    url:`${this.url}/php/login.php`,
                     data:{
                         nam:this.name,
                         psw:this.password
@@ -49,7 +53,8 @@ import $ from "jquery";
                   }); 
                         }
                         else{
-                           Cookie.setCookie("nam",this.name,5)
+                           // Cookie.setCookie("nam",this.name,5)
+                         localStorage.setItem("nam",this.name)
                                   MessageBox.alert('登录成功').then(action => {
                                       router.push({path:"/myjuanpi/user"})
                   })

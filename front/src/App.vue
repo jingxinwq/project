@@ -85,7 +85,6 @@ a{
     html,body{
       height: 100%;
       overflow: hidden;
-      font-size: 100px;
       overflow: auto;
     }
 

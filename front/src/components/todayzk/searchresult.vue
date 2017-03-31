@@ -79,7 +79,7 @@ export default {
   methods:{
     onSubmit(msg){
       this.goodsData="";
-      axios.get('http://localhost:3000/homeapi/search',
+      axios.get(`${this.url}/homeapi/search`,
         {params: {msg: msg}
 
       }).then(response=>{

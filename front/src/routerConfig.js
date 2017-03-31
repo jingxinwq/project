@@ -50,10 +50,6 @@ import User from"./components/myjuanpi/user.vue"
 import Login from"./components/myjuanpi/login.vue"
 import Register from"./components/myjuanpi/register.vue"
 import Userinfo from"./components/myjuanpi/userinfo.vue"
-import Aboutme from"./components/myjuanpi/aboutme.vue"
-import Callcenter from"./components/myjuanpi/callcenter.vue"
-import Mycollect from"./components/myjuanpi/mycollect.vue"
-import Order from"./components/myjuanpi/order.vue"
 
 Vue.use(VueRouter)
 const routes=[
@@ -147,31 +143,10 @@ const routes=[
 				path:'userinfo',
 				component:Userinfo,
 				name:'userinfo'
-			},
-
-			{
-				path:'aboutme',
-				component:Aboutme,
-				name:'aboutme'
-			},
-			{
-				path:'callcenter',
-				component:Callcenter,
-				name:'callcenter'
-			},
-			{
-				path:'mycollect',
-				component:Mycollect,
-				name:'mycollect'
-			},
-			{
-				path:'order',
-				component:Order,
-				name:'order'
 			}
 		]
 },
-	// {path:"/*",redirect:"/today"}
+	{path:"/",redirect:"/today"}
 ]
 const router = new VueRouter({
   mode: 'history', //模式改变 (hash,history)

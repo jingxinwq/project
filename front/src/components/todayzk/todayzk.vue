@@ -229,7 +229,7 @@ export default {
 		height: 0.44rem;
 		position: absolute;
 		right: 0.18rem;
-		top: 0rem;
+		top: 0.2rem;
 		display: block;
 	}
 	#header .inner .search img{
@@ -365,5 +365,6 @@ export default {
 		display: block;
 		margin-top: 0.1rem;
 		height: 0.3rem;
+		float:left;
 	}
 </style>

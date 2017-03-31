@@ -206,6 +206,8 @@ export default {
     margin-bottom: 0.2rem;
   }
   #categoryright li img{
+  	width: 100%;
+  	height: 100%;
     display: block;
     margin:0 auto;
   }

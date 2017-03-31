@@ -14,21 +14,29 @@
      import $ from "jquery";
      import router from "../../routerConfig"
      import { MessageBox } from 'mint-ui';
+     import Url from '../../address2';
+
 export default {
         data(){
             return{
               
                 name:"",
-                password:""
+                password:"",
+                url:""
             }
         },
   mounted(){
 },
+created(){
+
+},
+
     methods:{
-     
+           
            registernow() {
+            this.url = Url.url;
                  $.ajax({
-                    url:"http://localhost/my-site/project/php/register.php",
+                    url:`${this.url}/php/register.php`,
                     data:{
                         nam:this.name,
                         psw:this.password
@@ -36,9 +44,17 @@ export default {
                     type:"post",
                     success:(res)=>{
                         console.log(res)
-                         MessageBox.alert('登录成功').then(action => {
+                        if(res==0){
+                                   MessageBox.alert('此用户存在，重新注册').then(action => {
+                         
+                  })
+                        }
+                        else{
+                        MessageBox.alert('注册成功').then(action => {
                          router.push({path:"/myjuanpi/login"})
-                  });
+                  })
+                        }
+                 
                       // Cookie.setCookie("nam",this.name,5)
                     
                         

@@ -3,25 +3,26 @@
 		<div class="app common" style="background:#f7f7f7;">
 			<header id="head">
 				<div class="fixtop">
-					<a id="t-find" class="btnBack" href="javascript:window.history.go(-1)"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/arrow_black.png?578e3149"></a>
+					<a id="t-find" class="btnBack" href="javascript:window.history.go(-1)"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/arrow_black.png?578e3149"></a>
 					<span id="t-index">我的账户</span>
 				</div>
 			</header>
+
 			<div class="bind_phone">
 				<ul>
 					<li>
 						<div id="imginfo">
 							<span class="fl">头像</span>
 							<div class="fr">
-								<img src="//s1.juancdn.com/face/default.jpg" class="imgsize">
-								<img class="arrow" src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8">
+								<img :src="path" class="imgsize" @click='chang'>
+								<img class="arrow" src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8">
 						    </div>
 						</div>
 					</li>
 					<li class="usernameli">
 						<p class="change_name">
 							<span class="fl">用户名</span>
-							<img class="arrow" src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8">
+							<img class="arrow" src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8">
 							<span class="fr">{{name}}</span>
 						</p>
 					</li>
@@ -29,40 +30,49 @@
 					<li class="usernameli">
 						<p class="change_name">
 							<span class="fl">收货地址</span>
-							<img class="arrow" src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8">
+							<img class="arrow" src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8">
 							<span class="fr">{{name}}</span>
 						</p>
 					</li>
 				</ul>
 				<div class="gray-line"></div>
 
-
-				
 			</div>
+			<mt-actionsheet :actions="actions" v-model="sheetVisible">
+    	
+  			</mt-actionsheet>
 		</div>
 		<!-- 加入购物车快捷入口 -->
 	</div>
-
-        <!-- head js  库文件js 160918优化移动到此处-->
-        <!-- 微信分享配置 -->
-        
-        <!-- 统计js -->
 </template>
 <script>
 	import router from "../../routerConfig";
+	import Vue from "vue";
+	import { Actionsheet } from 'mint-ui';
 
+	Vue.component(Actionsheet.name, Actionsheet);
 
 	export default {
         data(){
             return{
               
                 name:"",
-                show:true
+                show:true,
                 // hascookie:false
+                path:'',
+                sheetVisible:false,
+		        actions:[{
+		        	name:"拍照",method:this.test1
+		        },
+		        {
+		        	name:"从相册中选择",method:this.test2
+		        }
+		        ]
             }
         },
 		created(){
-			  this.name=Cookie.getCookie("nam");
+			  this.name=localStorage.getItem("nam"); 
+			    // this.name=localStorage.getsetItem("nam")
 				 	
 		},
 
@@ -72,16 +82,51 @@
 			changinfo(){
 				router.push({ name: 'userinfo'})
 
-			}
-
-		}
+			},
+			chang:function(){
+  				this.sheetVisible=true;
+			},
+			test1:function(){
   	
+  				var cmr = plus.camera.getCamera();
+				var res = cmr.supportedImageResolutions[0];
+				var fmt = cmr.supportedImageFormats[0];
+				console.log("Resolution: "+res+", Format: "+fmt);
+				cmr.captureImage( ( path )=>{
+					plus.io.resolveLocalFileSystemURL( path,(entry)=>{
+							console.log(entry.toLocalURL());
+							this.path=entry.toLocalURL();
+							console.log(this.path);
+						})
+					},
+					function( error ) {
+						alert( "Capture image failed: " + error.message );
+					},
+					{resolution:res,format:fmt}
+				);
+  			},
+			test2:function(){
+			  	console.log(222)
+			  	console.log("从相册中选择图片:");
+			    plus.gallery.pick( (path)=>{
+			    	this.path=path;
+			    	console.log(path);
+			    }, function ( e ) {
+			    	console.log( "取消选择图片" );
+			    }, {filter:"image"} );
+			 }
+		}
   	}
 </script>
+
 <style scoped>
 .fl{float:left;}
 .fr{
 	float:right;
+}
+img{
+	width:0.3rem;
+	height:0.3rem;
 }
 body{
 	background: rgb(247, 247, 247);
@@ -103,10 +148,12 @@ body{
 	#t-find img{
 		display: block;
 		margin: .15rem auto;
+		width:0.6rem;
+		height:0.6rem;
 	}
 	#t-index{
 	display: block;
-	width: 1.8rem;
+	/*width: 1.8rem;*/
 	height: .88rem;
 	line-height: .88rem;
 	font-size: .36rem;
@@ -179,5 +226,25 @@ body{
 	}
 	.change_name{
 		background: white;
+	}
+	.mint-actionsheet{
+		font-size: 5.2rem;
+	    height: 3rem
+	}
+
+	.mint-actionsheet ul.mint-actionsheet-list{
+		height:2rem!important;
+	}
+	.mint-actionsheet-listitem{
+		line-height: 1rem!important;
+		height: 1rem!important;
+		font-size:0.35rem!important;
+		
+	}
+	.mint-actionsheet-button{
+		height: 1rem!important;
+		font-size: 0.35rem!important;
+		height: 1rem!important;
+		line-height: 1rem!important;
 	}
 </style>

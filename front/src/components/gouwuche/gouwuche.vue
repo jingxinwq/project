@@ -10,93 +10,41 @@
                       
                     </div>
                 </header>
-                    <div class="quan-show bar-normal bag-show spcar">
-                        <div class="quan-con">
-            	            <div class="empty">
+                    <div class=" spcar" >
+                            <div class="empty" v-if="show">
                                 <img src="//jp.juancdn.com/jpwebapp_v1/images_v1/shopping/empty-cart.png?6652b5eb">
                                 <p class="empty-tips">购物车还是空荡荡的</p>
                                 <p class="empty-buy-tips">快去挑选商品吧</p>
                                 <p  class="go-buy"  @click="gototodayshop">今日特卖</p>
                             </div>
-                            <div id="shopcar">
-                                <img src="" alt="">
-                                <p>title</p>
-                                <p>价格</p>
-                            </div>
-                        </div>
-        	        </div>
-                
-                <!--购物袋商品列表 begin-->
-            <!--     <div class="customer_note" style="display:none;"><p class="cart-countdown">请在<em>(00:00)</em>内完成付款，超时订单将自动取消</p></div>
-                <div class="my-bag" id="goodsList" style="display:none;">
-                                </div> -->
-                <!--总金额-->
-                <div class="my-bag-total" id="bag-total-price" style="display:none;">
-                                        ￥<span id="bagTotalPrice"></span>
+                            <ul id="shopcar" v-else>
+                            <li v-for="data in datalist" class="eachli" >
+                                <div id="shoptop">
+                                    <div id="leftside" >
+                                       <img :src="data.image">
                                     </div>
-                <!--购物袋商品列表 over-->
-                <!--优惠券 over-->
-                <!--过期商品 begin-->
-  <!--               <div class="decollator_box">
-                    <div class="decollator_box_bg_line"></div>
-                    <div class="decollator_box_con">
-                        <em class="fl"></em>
-                        <span class="changeshop">--以下商品已过期，需要重新加入才能购买--</span>
-                        <em class="fr"></em>
-                    </div>
-                </div>
-                <div class="old-bag">
-                    <ul class="bag-list">
-                        <li class="cart_shop_good_list" skuid="667681500">
-            <a href="javascript:;" class="box orderlist-box clear">
-                                    <div class="pic fl" onclick="window.location.href='//m.juanpi.com/shop/46090490'">
-                                    <img src="//s2.juancdn.com/bao/170222/b/a/58ada4abdb01d98d558b45a1_800x800.jpg?iopcmd=thumbnail&amp;type=8&amp;width=100&amp;height=100%7Ciopcmd=convert&amp;Q=88&amp;dst=jpg">
-                </div>
-                <div class="ob-info">
-                    <div class="obi-first">
-                  <p class="title fl" onclick="window.location.href='//m.juanpi.com/shop/46090490'">金属方扣鱼嘴粗跟单鞋</p>
-                   <p class="current fr">￥69</p>
-                    </div>
-                    <div class="obi-second">
-                        <p class="type fl">
-                            39【偏小一码】 黑色</p>
-                        <p class="old fr">￥588</p>
-                    </div>
-                     <div class="obi-third">
-                      <p class="num fl"><span class="join order-normal-btn">重新加入</span></p>
-                    <p class="del fr"></p>
-                    </div>
-                </div>
-            </a>
-        </li>
-    </ul>
-                    <div class="more" id="page-loading" style="display: none;"><span>正在努力加载中<img style="height: 5px;" src="//jp.juancdn.com/jpwebapp/images/icon/goods_loading.gif?ts=89e306c5f306d46a_1490724169"></span></div>
-                    <div class="more" id="page-no-next" style="display: none;"><span>亲，已经到底了</span></div>
-                </div> -->
-             
-
-                <!--结算按钮 begin-->
-              <!--   <input type="hidden" name="totalPrice" id="totalPrice" value=""> -->
-               <!--  <div class="bag-total" style="display:none;">
-                    <div class="bag-money">
-                        <p class="count">总金额<span class="p" id="myBagTotal">￥0.00</span>
-                            <span class="t"></span>
-                            <span class="s">(已省<em id="save">￥0</em>)</span>
-                        </p>
-                    </div>
-                    <a href="javascript:;" class="go_pay fr" data-login="1">去结算</a>
-                </div> -->
-                <!--结算按钮 over-->
-               <!--  <div style="display: none; z-index: 201;" class="alert_fullbg"></div>
-                <div class="normal_alert_bg" style="display:none;">
-                </div> -->
-               <!--  <div class="normal_loading" id="loading-alert">
-                    <div class="box other">
+                                    <div id="rightside" >
+                                        <p id="rightside-con">
+                                            <span class="span1">{{data.title}}</span>
+                                            <span class="span2">{{data.price}}</span>
+                                        </p>
+                                        <div id="addor">
+                                             <p class="leftall">
+                                                <span >-</span>
+                                                <input type="text">
+                                                <span>+</span>
+                                             </p>
+                                             <p class="rightall" @click="delnow"><button>删除</button></p>
+                                        </div>
+                                        </div>
+                                </div>
+                                <p class="pricenow"></p>
+                                </li>
+                            </ul>
+                            <p class="sum" v-else>总金额：￥sum</p>
                     
                     </div>
-                </div> -->
-               <!--  <div style="display:none;" class="temai_tips">
-                </div> -->
+              
             </section>
     </div>
     </div>
@@ -105,16 +53,90 @@
 
 <script>
 import router from "../../routerConfig"
+import $ from "jquery"
+import Url from '../../address2';
    export default {
      data(){
             return{
+                datalist:[],
+                 arr:[],
+                 show:true ,
+                    goodsData:"",
+                    goodsimgsData:"",
+                    url:""
+
+      
 
             }
         },
+          mounted(){
+            this.url = Url.url;
+           // console.log(Cookie.getCookie("nam"))
+            if(localStorage.getItem("nam")){
+                $.post(`${this.url}/php/getShopcar.php`,{
+                        username:localStorage.getItem("nam")
+                      
+                }).then(res=>{
+                    var arr=[]
+                    // this.datalist=JSON.parse(res)
+                     // console.log(res)
+                     // console.log(JSON.parse(res))
+                    for(var i=0;i<JSON.parse(res).length;i++){
+                        arr.push(JSON.parse(res)[i])
+                    }
+                   console.log(arr)
+                   this.datalist=arr;
+                   
+                   console.log(this.datalist[0].title)
+                   // console.log(this.datalist)
+                    if(this.datalist.length){
+                        this.show=false
+                        
+                    }else{
+                        this.show=true
+                    }
+                    
+                },error=>{
+                    console.log(error)
+                })
+            }else{
+                router.push("/myjuanpi/login")
+            }
+},
+        computed:{
+            },
         methods:{
+
             gototodayshop(){
                 router.push({path:"today/todayzk"})
             },
+            delnow(){
+                 this.url = Url.url;
+                    $.post(`${this.url}/mysite---2/project/php/del.php`,{
+                      title:this.datalist[0].title
+                       
+                }).then(res=>{
+                   console.log(res)     
+        $.post(`${this.url}/mysite---2/project/php/getShopcar.php`,{
+                        username:Cookie.localStorage.getItem("nam")
+                      
+                }).then(res=>{
+                   console.log(res)     
+
+
+
+                                  
+                },error=>{
+                    console.log(error)
+                })
+
+
+
+                },error=>{
+                    console.log(error)
+                })
+              }
+            
 
         }
 
@@ -124,51 +146,161 @@ import router from "../../routerConfig"
 
 <style scoped>
 *{
-	font-size: 0.4rem;
+    font-size: 0.3rem;
+    display: auto;
 }
 #head{
-	background: white;
-	text-align: center;
-	height:1rem;
-	line-height: 1rem;
+    background: white;
+    text-align: center;
+    height:1rem;
+    line-height: 1rem;
 }
 #t-index{
-	
+    text-align: center;
+    font-size: 0.4rem;
+    
+}
+.quan-con{
+    overflow: auto;
+}
+.app-content{
+    overflow:hidden;
+}
+.shopli{
+    height: 1rem;
+    line-height: 1rem
+}
+.shopli img{
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+}
+#shoptop{
+    display: flex;
+    overflow: auto;
+    text-align: center;
+}
+
+#rightside{
+    flex:5;
+    
+}
+#rightside-con{
+    display: flex;
+}
+#rightside-con .span1{
+    flex:1;
+}
+#rightside-con .span2{
+    flex:1;
 }
 .spcar{
-	background: white;
-	text-align: center;
-	margin-top:1rem;
-	font-size:0.3rem;
-	height:100%;
-	overflow: auto;
+    background: white;
+    text-align: center;
+    margin-top:1rem;
+    font-size:0.3rem;
+    height:100%;
+    overflow: auto;
 }
 .empty img{
-	margin-top: 0.8rem
+    margin-top: 0.8rem
 
 }
 .empty-tips{
-	font-size: 0.4rem;
-	margin:0.4rem;
+    font-size: 0.4rem;
+    margin:0.4rem;
 }
 .empty-buy-tips{
-	font-size: 0.3rem;
+    font-size: 0.3rem;
 }
 .go-buy{
 
-	border:1px solid red;
-	margin:0.5rem;
-	margin-left:1.9rem;
-	width:3.5rem;
-	height:1rem;
-	line-height: 1rem;
+    border:1px solid red;
+    margin:0.5rem;
+    margin-left:1.9rem;
+    width:3.5rem;
+    height:1rem;
+    line-height: 1rem;
 
 }
 .changeshop{
-	display: block;
-	font-size: 0.3rem;
-	text-align: center;
-	margin-top:0.3rem;
+    display: block;
+    font-size: 0.3rem;
+    text-align: center;
+    margin-top:0.3rem;
+}
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
+.shopli{
+height: 1.5rem;
+line-height: 1.5rem;
+
+
+}
+.leftimg{
+    overflow: hidden;
+    height: 1rem;
+    line-height: 1rem;
+   
+}
+.rightside{
+    overflow: hidden;
+   
+}
+.allcar{
+    overflow: hidden;
+}
+input{
+    width: 0.4rem;
+    height: 0.4rem;
+    display: inline-block;
+}
+.shopcar{
+    font-size: 0.3rem;
+}
+.inputnow{
+    width: 0.6rem;
+    height: 0.6rem;
+}
+#addor{
+    display: flex;
+}
+.leftall {
+    flex: 1
+}
+.rightall{
+    flex:1
+}
+.pricenow{
+    text-align: right;
+}
+.sum{
+    width: 100%;
+    height: 0.7rem;
+    line-height: 0.7rem;
+    background: red;
+}
+#leftside img{
+    display:table-cell;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+#leftside{
+    flex:1;
+    height: 1.5rem;
+    line-height: 1.5rem;
+
+}
+.eachli{
+    height:1.5rem;
+
+}
+.rightside{
+    height: 1.5rem;
+    line-height: 1.5rem
 }
 </style>
- 

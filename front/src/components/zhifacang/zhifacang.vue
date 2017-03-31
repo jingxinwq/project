@@ -32,29 +32,29 @@
 				<div class="ad0">
 					<div class="ad1">
 						<a href="javascript:void(0);">						
-							<img src="//s2.juancdn.com/bao/170322/5/f/58d225b5ad0a490b0b8b45cb_375x240.png?iopcmd=convert&Q=88&dst=png" />
+							<img src="http://s2.juancdn.com/bao/170322/5/f/58d225b5ad0a490b0b8b45cb_375x240.png?iopcmd=convert&Q=88&dst=png" />
 						</a>
 					</div>
 					<div class="ad1">
 						<a href="javascript:void(0);">						
-							<img src="//s2.juancdn.com/bao/170321/b/0/58d084d3a43d1f0c681ba47b_375x240.png?iopcmd=convert&Q=88&dst=png" />
+							<img src="http://s2.juancdn.com/bao/170321/b/0/58d084d3a43d1f0c681ba47b_375x240.png?iopcmd=convert&Q=88&dst=png" />
 						</a>
 					</div>
 				</div>
 				<div class="ad2">
-					<div class="ad3" style="border-right:3px solid #d8d8d8;box-sizing: border-box;">
+					<div class="ad3">
 						<a href="javascript:void(0);">
-							<img  src="//s2.juancdn.com/bao/170324/a/c/58d49614a43d1f4508506aea_250x288.png?iopcmd=convert&Q=88&dst=png" style="width: 100%" />
-						</a>
-					</div>
-					<div class="ad3"  style="border-right:3px solid #d8d8d8;box-sizing: border-box;">
-						<a href="javascript:void(0);">
-							<img  src="//s2.juancdn.com/bao/170324/a/0/58d4961aa43d1f416c0e7ac0_250x288.png?iopcmd=convert&Q=88&dst=png" style="width: 100%" />
+							<img  src="http://s2.juancdn.com/bao/170324/a/c/58d49614a43d1f4508506aea_250x288.png?iopcmd=convert&Q=88&dst=png" style="width: 100%" />
 						</a>
 					</div>
 					<div class="ad3">
 						<a href="javascript:void(0);">
-							<img  src="//s2.juancdn.com/bao/170324/3/6/58d4961fad0a495d0e8b45df_250x288.png?iopcmd=convert&Q=88&dst=png" style="width: 100%" />
+							<img  src="http://s2.juancdn.com/bao/170324/a/0/58d4961aa43d1f416c0e7ac0_250x288.png?iopcmd=convert&Q=88&dst=png" style="width: 100%" />
+						</a>
+					</div>
+					<div class="ad3">
+						<a href="javascript:void(0);">
+							<img  src="http://s2.juancdn.com/bao/170324/3/6/58d4961fad0a495d0e8b45df_250x288.png?iopcmd=convert&Q=88&dst=png" style="width: 100%" />
 						</a>
 					</div>
 				</div>
@@ -224,22 +224,30 @@ export default {
 	background: #fff;
 	top:0;
 	z-index:400;}
-.colgt5 a{margin-right: .2rem;
+.colgt5{
+		display:flex ;
+		height: 0.788rem;
+		line-height: 0.788rem;
+		/*height: */
+	}
+.colgt5 a{
+	flex:1;
+	margin-right: .2rem;
 		margin-left: .17rem;
 		padding-right: .06rem;
 		padding-left: .06rem;
 		border-bottom-width: .026rem;
 		font-size: .245rem;
-		height:.49rem;
-		line-height: .49rem;
+		height: 0.788rem;
+		line-height: 0.788rem;
 		text-align: center;
 		color:#4a4a4a;
 		display: inline-block;
 		white-space:nowrap;
-		border-bottom-style: solid;
-		border-bottom-color: #fff;
 		text-decoration: none;
-		width: 8%}
+		width: 8%;
+		display: block;
+		}
 #ad{display: block;
 	width:100%}
 #ad .ad0{width:100%;
@@ -258,8 +266,6 @@ export default {
 	padding-left: .191rem;
 	box-sizing: border-box;
 	background: #fff;
- border-top:25px solid #d8d8d8;
-  border-bottom:25px solid #d8d8d8;
 	}
  #ad .ad1 img{vertical-align: middle;
     width: 100%;
@@ -309,8 +315,6 @@ export default {
 					    text-decoration: line-through;
 					    position: relative;
 					    left: .93rem;
-					  /*  margin-left: 1px;
-					    font-size: 10px;*/
 					    vertical-align: baseline;
 					    font-size:.2rem;}
 #goods li .price .only-time{position:absolute;

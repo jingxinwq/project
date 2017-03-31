@@ -215,7 +215,7 @@ export default {
 	font-size: .26rem;	
 }
 #nav .rr .r2 p{
-
+	
 }
 #nav .rr .r2 .shopsend{
 	background: #f70;
@@ -230,25 +230,30 @@ export default {
 
 /*03.28 10:56fixed*/
 #nav .sale{
-	height: 0.8rem;
+	height: 1rem;
 	font-size: .24rem;
 	background: #fff;
 }
 #nav .sale div{
-	/*line-height: .5rem;*/
-	/*margin-top: 0.1rem*/
+	height: 0.5rem;
 }
 #nav .sale span{
-	display: inline-block;
+	display: block;
 	/*width: .9rem;*/
 	text-align: center;
 	padding: 0 0.05rem;
 	border: 1px solid #ff464e;
 	color: #ff464e;
 	margin: 0 0.1rem 0 0.2rem;
+	float: left;
 }
 #nav .sale p{
-	display: inline-block
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 5.5rem;
+	white-space: nowrap;
+	
 }
 #hq{
 	padding: .01rem 0;
@@ -262,9 +267,12 @@ export default {
 }
 #hq ul{
 		display: flex;
+		height: 0.8rem;
 }
 #hq ul li{
 	display: inline-block;
+	height: 0.8rem;
+	line-height: 0.8rem;
 	flex: 1;
 }
 .time{

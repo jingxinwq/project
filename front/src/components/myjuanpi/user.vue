@@ -3,9 +3,9 @@
 	<header id="head"> 
 		<div class="userTop">
 			 <a id="t-find" class="btnBack" href="javascript:window.history.go(-1)">
-			 <img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/arrow_white.png?5123297e"></a> 
+			 <img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/arrow_white.png?5123297e"></a> 
 			 <span id="t-index">个人中心</span> 
-			 <span  @click="delcookie()" class="tuichu">退出</span>
+			  <span  @click="delcookie()" class="tuichu">退出</span>
 		 </div>
 		 <div class="user-login" v-if="show">
 			 <a  @click="changepage2()">登录</a>
@@ -33,38 +33,38 @@
 				<div class="userItdiv">
 					<!-- 新增横菜单 -->
 					<a href="//m.juanpi.com/order/index/t/1">
-						<div class="icon"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/payfor.png?38667c00"></div><span>待付款</span>					</a>
+						<div class="icon"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/payfor.png?38667c00"></div><span>待付款</span>					</a>
 					<a href="//m.juanpi.com/order/index/t/10">
-						<div class="icon"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/backOrder.png?addb3ce"></div><span>待发货</span>					</a>
+						<div class="icon"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/backOrder.png?addb3ce"></div><span>待发货</span>					</a>
 					<a href="//m.juanpi.com/order/index/t/4">
-						<div class="icon"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/express.png?bde85c21"></div><span>待收货</span>					</a>
+						<div class="icon"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/express.png?bde85c21"></div><span>待收货</span>					</a>
 					<a href="javascript:;" id="saleafter">
-						<div class="icon"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/afterSales.png?5ba3ac12"></div><span>退款/售后</span>
+						<div class="icon"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/afterSales.png?5ba3ac12"></div><span>退款/售后</span>
 					</a>
 				</div>
 </div>
 				<div class="userItdivs">
 					<a href="//m.juanpi.com/myfavorite">
-						<div class="icon"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/favor.png?a8102f3b"></div>
+						<div class="icon"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/favor.png?a8102f3b"></div>
 						<span>我的收藏</span>
-						<div class="arrow"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8"></div>
+						<div class="arrow"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8"></div>
 					</a>
 					<a href="//m.juanpi.com/coupon">
-						<div class="icon"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/coupons.png?ff1a2b73"></div>
+						<div class="icon"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/coupons.png?ff1a2b73"></div>
 						<span>我的优惠券</span>
-						<div class="arrow"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8"></div>
+						<div class="arrow"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8"></div>
 					</a>
 				</div>
 				<div class="userItdivs">
 					<a href="//m.juanpi.com/service/index">
-						<div class="icon"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/help.png?952bde3b"></div>
+						<div class="icon"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/help.png?952bde3b"></div>
 						<span>客服中心</span>
-						<div class="arrow"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8"></div>
+						<div class="arrow"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8"></div>
 					</a>
 					<a href="//m.juanpi.com/about/juanpi">
-						<div class="icon"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/about.png?9f10d5da"></div>
+						<div class="icon"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/about.png?9f10d5da"></div>
 						<span>关于卷皮</span>
-						<div class="arrow"><img src="//jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8"></div>
+						<div class="arrow"><img src="http://jp.juancdn.com/jpwebapp_v1/images_v1/user/details.png?57f255a8"></div>
 					</a>
 				</div>
 </div>
@@ -81,13 +81,14 @@ import router from "../../routerConfig";
                 // hascookie:false
             }
         },
+        // Cookie.getCookie("nam")==''
 		created(){
-				 	if(Cookie.getCookie("nam")==''){
+				 	if(localStorage.getItem("nam")==''){
 						// this.hascookie=true	
 						// console.log(111);
 				 	}else{
 				 		this.show=false;
-                            this.name=Cookie.getCookie("nam");
+                            this.name=localStorage.getItem("nam"); 
                             // console.log(this.name)
 
 				 	}
@@ -125,6 +126,10 @@ import router from "../../routerConfig";
 <style scoped>
 *{
 	font-size: 0.3rem;
+}
+img{
+	width:0.3rem;
+	height:0.3rem;
 }
 #all{
 	height: 100%;
@@ -230,6 +235,10 @@ import router from "../../routerConfig";
 .userItdiv a{
 	flex:1;
 }
+.userItdiv a .img{
+	width: 0.3rem;
+	height: 0.3rem;
+}
 
 .userItdivs{
 	margin-top: 0.1rem;
@@ -243,8 +252,10 @@ import router from "../../routerConfig";
 .userItdivs a .icon {
 	flex:1;
 }
-.userItdivs a img {
+.userItdivs img {
 	flex:1;
+	width: 0.3rem;
+	height: 0.3rem;
 }
 .userItdivs a span {
 	flex:8;

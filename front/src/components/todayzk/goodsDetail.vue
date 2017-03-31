@@ -106,7 +106,8 @@ import axios from "axios";
 import router from "../../routerConfig";
 import { MessageBox } from 'mint-ui';
 import Url from '../../address';
-
+import Url1 from '../../address2';
+import $ from "jquery";
 export default {
   name: 'goodsDetail',
   data () {
@@ -134,21 +135,43 @@ export default {
 			router.go(-1)
 		},
 		addshopcar(){
-			 	if(Cookie.getCookie("nam")){
+			this.url = Url1.url;
+			 	if(localStorage.getItem("nam")){
 					 // router.push({path:"/gouwuche"})
-					console.log(111)
-					              MessageBox.alert('成功添加到购物车').then(action => {
+					// console.log(111)
+	              MessageBox.alert('成功添加到购物车').then(action => {
+
+
+              $.post(`${this.url}/php/addShopcar.php`,{
+						username:localStorage.getItem("nam"),
+						image:this.goodsData.topImg1,
+						title:this.goodsData.title,
+              			price:this.goodsData.price1
+				}).then(res=>{
+					var arr=[]
+					this.datalist=JSON.parse(res)
+					console.log(JSON.parse(res))
+				
+					if(this.datalist.length){
+						this.show=false
+						
+					}else{
+						this.show=true
+					}
+				},error=>{
+					console.log(error)
+				})
                                    
                   })
-				 	}else{
-                            router.push({path:"/myjuanpi/login"})
-                            console.log(222)
 
-				 	}
+			}else{
+				router.push("/myjuanpi/login")
+			}
 
 		}
 	}
 }
+
 </script>
 
 <style scoped>
@@ -157,9 +180,9 @@ export default {
 		height: 12.53rem;
 	}
 	button{
-		width:1.8rem;
+		/*width:1.8rem;*/
 		height: 0.6rem;
-		line-height: 0.6rem;
+		/*line-height: 0.6rem;*/
 		text-align: center;
 		font-size: 0.3rem;
 		border:0;
